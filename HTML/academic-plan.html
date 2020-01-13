@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link rel="stylesheet" href="design.css">
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="utf-8">
+    <title>Academic Plan</title>
+  </head>
+  <div class = "header">
+    <div class="navbar">
+      <a href="#"><i class = "fa fa-home"></i></a>
+      <a href="#"><i class = "fa fa-question-circle"></i></a>
+      <a href="#">Log out</a>
+    </div>
+    <header>
+      <h1>Academic Plan</h1>
+    </header>
+  </div>
+  <body>
+    <table class = "student-info">
+      <tr>
+        <th>Name: </th>
+        <th><input type="text" name="name" value=""></th>
+        <th>School and Community Organizations/Clubs/Event I will partigicpate in: </th>
+      </tr>
+      <tr>
+        <th>Degree:</th>
+        <th><input type="text" name="degree" value=""></th>
+        <th><input type="text" name="clubs" value=""></th>
+      </tr>
+      <tr>
+        <th>Minor (if applicable): </th>
+        <th><input type="text" name="minor" value=""></th>
+        <th>Supports I will use: </th>
+      </tr>
+      <tr>
+        <th>PGPA Required: </th>
+        <th><input type="text" name="PGPA-Required" value=""></th>
+        <th><input type="text" name="support" value="E.g tutoring, Global Learning Centre"></th>
+      </tr>
+      <tr>
+        <th>Total credit hours needed: </th>
+        <th><input type="text" name="credit-hours" value=""></th>
+      </tr>
+    </table>
+
+    <p class = "note">NOTE: Information inside the box does not need to be changed, it will automatically change
+    as information is added.</p>
+
+    <table class = "credits">
+      <tr>
+        <th>Total Hours:(this will change as credit hours are entered below) </th>
+        <th><input type="text" name="hours" value=""></th>
+        <th>PGPA: </th>
+        <th><input type="text" name="PGPA" value=""></th>
+        <th></th>
+      </tr>
+      <tr>
+        <th></th>
+        <th></th>
+        <th>MGPA: </th>
+        <th><input type="text" name="MGPA" value=""></th>
+        <th>Expected Graduation:</th>
+        <th><input type="text" name="expected-grad" value=""></th>
+      </tr>
+      <tr>
+        <th>Total credit hours earned: </th>
+        <th><input type="text" name="hours-earned" value=""></th>
+        <th>UGPA</th>
+        <th><input type="text" name="UGPA" value=""></th>
+      </tr>
+    </table>
+
+    <table class="planner">
+      <tr>
+        <th colspan="9">Classes already taken: &nbsp;</th>
+        <th colspan="9">Classes planning to take: </th>
+      </tr>
+      <tr id = "classes">
+        <td>Credit Hours</td>
+        <td>Course Number</td>
+        <td>Course Name</td>
+        <td>Year</td>
+        <td>Semester Code</td>
+        <td>Credits Earned</td>
+        <td>Can you use this course for your program?</td>
+        <td>Is this course a MAJOR requirement</td>
+        <td>Grade or T (transfer credit)</td>
+        <td>Credit Hours</td>
+        <td>Course Number</td>
+        <td>Course Name</td>
+        <td>Year</td>
+        <td>Semester Code</td>
+        <td>Credits Earned</td>
+        <td>Can you use this course for your program?</td>
+        <td>Is this course a MAJOR requirement</td>
+        <td>Grade or T (transfer credit)</td>
+      </tr>
+    </table>
+  </body>
+</html>
