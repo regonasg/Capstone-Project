@@ -4,26 +4,34 @@ import { Link } from 'react-router-dom';
 
 const Navigation = () => {
     return (
-        <nav className="navbar navbar-expand-md navbar-dark bg-primary">
-            <div className="container"> <button className="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar18">
-                <span className="navbar-toggler-icon"></span>
-            </button>
-                
-                    <ul className="navbar-nav mx-auto"></ul>
-                    <ul className="navbar-nav">
-                      
-                    <li> <Link to={"/SemSum"} className="nav-item"> Semester Summary </Link>  </li>
-                    < li><Link to={'/Ugpa'} className="nav-item">Ugpa</Link></li>
-                    < li><Link to={'/SSW'} className="nav-item">SSW</Link></li>
-                    < li><Link to={'/Hook_prototype'} className="nav-item">Hook</Link></li> 
-                    </ul>
-                    
-                </div>
-            
-        </nav>
-
+        <nav>
+      <div className="logo">
+        Caltor
+      </div>
+      <ul className = "nav-links">
+        <li>
+        <Link to={"/Home"} > Home </Link></li>
+        <li><Link to={"/SignUpLogin"} > Logout </Link></li>
+        <li></li>
+        <div className="burger">
+          <a><div></div>
+          <div></div>
+          <div></div></a>
+        </div>
+        </ul>
+        <div id="sidebar">
+          <ul className = "menu">
+            <li> <Link to={"/SemSum"} > Semester Summary </Link>  </li>
+            < li><Link to={'/Ugpa'} >Ugpa</Link></li>
+            < li><Link to={'/SSW'} >SSW</Link></li>
+            < li><Link to={'/Hook_prototype'} >Hook</Link></li> 
+            </ul>
+        </div>
+    </nav>
+    
     )
 }
+
 
 
 class Navbar extends Component {
