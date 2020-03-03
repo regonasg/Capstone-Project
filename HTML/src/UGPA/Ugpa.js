@@ -1,6 +1,7 @@
 // JavaScript source code
 import React, { useState } from "react";
 import Ugpa2 from "./Ugpa2";
+import Navbar from "../Navbar"
 const Ugpa = () => {
     const initial_state = [
         { id: 1, name: "SSW ACT", grade: 0 }
@@ -37,9 +38,11 @@ const Ugpa = () => {
     };
 
     return (
-        <div> <h1>UGPA</h1>
+        <div>
+            <Navbar /> 
+            <h1>UGPA</h1>
         <div className="table">
-           
+            
             <div className="table-title">Completed Courses</div>
             <div className="table-content">
                

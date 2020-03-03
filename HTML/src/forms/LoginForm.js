@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter} from 'react-router-dom';
 
 const initialState = {
     username: '',
@@ -59,6 +59,8 @@ class LoginForm extends Component {
             console.log('The form was submitted with the following data: ');
             console.log(this.state);
             this.setState(initialState);
+            this.props.history.push("/home");
+
         }
     }
 
@@ -92,7 +94,7 @@ class LoginForm extends Component {
                    </div>
 
                    <div className = "form_Div">
-                       <button className = "form_button">Login</button>
+                       <button type = "submit" className = "form_button">Login</button>
                        <Link exact to='/signup' className = "form_Link" >
                            Create an account
                        </Link>
@@ -104,4 +106,4 @@ class LoginForm extends Component {
     }
 }
 
-export default LoginForm;
+export default withRouter(LoginForm);

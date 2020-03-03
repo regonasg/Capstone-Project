@@ -1,24 +1,50 @@
 import React, { Component } from 'react';
-import { Link,HashRouter as Router } from 'react-router-dom';
+import { Link,BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import SSW from '../SSW/SSW';
+import Ugpa from '../UGPA/Ugpa';
+import LoginForm from '../forms/LoginForm';
+import SignUpForm from '../forms/SignUpForm';
+import SemSum from '../SemesterSummary/SemSum';
+import AcademicForm from '../AcademicPlan/AcademicForm';
+
+
+
 //import '../index.css';
 
 export class Home extends Component {
     render() {
         return (
             <Router>
-                <div className="home">
-                <button className="Home_Button"><Link to={"/instruction"}>Instruction</Link></button> 
-                <button className="Home_Button"><Link to={"/UGPA"}>UGPA</Link></button>  
-                <button className="Home_Button"><Link to={"/SemSum"}>Semester Summary</Link></button>  
-                <button className="Home_Button"><Link to={"/SSW"}>SSW ACT</Link></button>  
-                <button className="Home_Button"><Link to={"/Course"}>Course</Link></button>  
-                <button className="Home_Button"><Link to={"/Learning"}>Learning</Link></button>  
-                <button className="Home_Button"><Link to={"/AcademicPlanDetails"}>Academic Plan</Link></button>  
-               </div> 
+               <div>
+                   <Switch>
+                    <Route path='/home' exact component={HomeContent}></Route>
+                    <Route path='/ssw-act' exact component={SSW}></Route>
+                    <Route path='/ugpa' exact component={Ugpa}></Route>
+                    <Route path='/login' exact component={LoginForm}></Route>
+                    <Route path='/signup' exact component={SignUpForm}></Route>
+                    <Route path='/sem-sum' exact component={SemSum}></Route>
+                    <Route path='/academic-plan' exact component={AcademicForm}></Route>
+                   </Switch>
+               </div>
             </Router>
              
         )
     
-        }
+    }
 }
+
+const HomeContent = () => (
+    <div>
+        <Link to='/instruction' ><button className="home_button">Instruction</button></Link>
+        <Link to='/ugpa' ><button className="home_button">UGPA</button></Link>  
+        <Link to='/sem-sum' ><button className="home_button">Semester Summary</button></Link> 
+        <Link to='/ssw-act' ><button className="home_button">SSW ACT</button></Link>
+        <Link to='/course' ><button className="home_button">Course</button></Link>
+        <Link to='/learning' ><button className="home_button">Learning</button></Link>  
+        <Link to='/academic-plan'><button className="home_button">Academic Plan</button></Link> 
+
+    </div>
+);
+
+
 export default Home

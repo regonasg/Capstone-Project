@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-
+import { Link} from 'react-router-dom';
 class SignUpForm extends Component {
     constructor(props) {
         super(props);
@@ -36,6 +35,7 @@ class SignUpForm extends Component {
     render() {
         return (
             <div className = "formCentre">
+                <h3>Sign Up</h3>
                <form onSubmit={this.handleSubmit} className = "form_Fields">
                    <div className = "form_Div">
                        <label >Username: </label>
@@ -81,10 +81,8 @@ class SignUpForm extends Component {
                    </div>
 
                    <div className = "form_Div">
-                       <button className = "form_button">Sign Up</button>
-                       <Link  to='/login' className = "form_Link" >
-                           Already have an account?
-                       </Link>
+                       <button type = "submit" className = "form_button">Sign Up</button>
+                       <Link  to={"/login"}>Already have an account? </Link>
                    </div>
 
                 </form> 

@@ -1,6 +1,6 @@
 // JavaScript source code
 import React, { useState } from "react";
-
+import Navbar from "../Navbar"
 
 
 
@@ -43,6 +43,7 @@ const SemSum = () => {
 
     return (
         <div className="table">
+            <Navbar />
             <div className="table-title">Semester Summary</div>
             <div className="table-content">
                 <div className="table-header">

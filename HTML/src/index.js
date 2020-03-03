@@ -1,39 +1,37 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom';
+import SignUpForm from'./forms/SignUpForm';
+import LoginForm from './forms/LoginForm';
+import Home from './components/Home';
+import SSW from './SSW/SSW';
+import Ugpa from './UGPA/Ugpa';
 import './index.css';
 import './styles.css';
 import './header.css';
-import SignUpLogin from './components/SignUpLogin';
-import Navbar from "./Navbar";
-import Ugpa from "./UGPA/Ugpa";
-import SemSum from "./SemesterSummary/SemSum";
-import SSW from "./SSW/SSW";
-import Hook_prototype from "./Hook_prototype";
-import AcademicPlanDetails from './components/AcademicPlanDetails';
-import Home from './components/Home'
+
 
 
 const App = () => (
         <Router>
-              <div>
-                  <Navbar/>
-          <Switch>
-                      <Route exact path='/App' component={App} />
-                  
-                      <Route path='/Ugpa' component={Ugpa} />
-                      <Route path='/SemSum' component={SemSum} />
-                      <Route path='/SSW' component={SSW} />
-                      <Route path='/Hook_prototype' component={Hook_prototype} />
-                      <Route exact path='/SignUpLogin' component={SignUpLogin} />
-                      <Route path='/academic-details' component={AcademicPlanDetails} />
-                      <Route path='/Home' component={Home} />
-  
-                          </Switch>
-  
-              </div>
-              </Router>
+            <div>
+                <Link to='/home'>Home</Link>
+
+                <Switch>
+                <Route path='/' exact component={SignUp}></Route>
+                <Route path='/login' exact component={LoginForm}></Route>
+                <Route path='/home' exact component={Home}></Route>
+                
+                </Switch>
+            </div>
+        </Router>
     
+);
+
+const SignUp = () => (
+    <div>
+        <SignUpForm />
+    </div>
 );
    
 
