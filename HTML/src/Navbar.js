@@ -30,6 +30,11 @@ const Navigation = () => {
             <Link to='/sem-sum'><li>Semester Summary</li></Link>
             <Link to='/ugpa'><li>UGPA</li></Link>
             <Link to='/course1'><li>Course1</li></Link>
+            <Link to='/course2'><li>Course2</li></Link>
+            <Link to='/course3'><li>Course3</li></Link>
+            <Link to='/course4'><li>Course4</li></Link>
+            <Link to='/course5'><li>Course5</li></Link>
+            <Link to='/course6'><li>Course6</li></Link>
        
             </ul>
         </div>

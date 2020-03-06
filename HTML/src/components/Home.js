@@ -8,6 +8,11 @@ import SemSum from '../SemesterSummary/SemSum';
 import AcademicForm from '../AcademicPlan/AcademicForm';
 import AcademicDetails from '../AcademicPlan/AcademicDetails';
 import Course1 from '../Courses/Course1';
+import Course2 from '../Courses/Course2';
+import Course3 from '../Courses/Course3';
+import Lab1 from '../Labs/Lab1';
+import Lab2 from '../Labs/Lab2';
+
 
 
 
@@ -28,6 +33,10 @@ export class Home extends Component {
                     <Route path='/academic-plan/details' exact component={AcademicForm}></Route>
                     <Route path='/academic-plan'component={AcademicDetails}></Route>
                     <Route path='/course1' component={Course1}></Route>
+                    <Route path='/course2' component={Course2}></Route>
+                    <Route path='/course3' component={Course3}></Route>
+                    <Route path='/lab1' component={Lab1}></Route>
+                    <Route path='/lab2' component={Lab2}></Route>
                     
                    </Switch>
                </div>
