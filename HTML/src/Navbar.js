@@ -29,6 +29,8 @@ const Navigation = () => {
             <Link to='/ssw-act'><li>SSW ACT</li></Link>
             <Link to='/sem-sum'><li>Semester Summary</li></Link>
             <Link to='/ugpa'><li>UGPA</li></Link>
+            <Link to='/course1'><li>Course1</li></Link>
+       
             </ul>
         </div>
     </nav>

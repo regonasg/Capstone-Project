@@ -6,6 +6,10 @@ import LoginForm from './forms/LoginForm';
 import Home from './components/Home';
 import SSW from './SSW/SSW';
 import Ugpa from './UGPA/Ugpa';
+import AcademicForm from './AcademicPlan/AcademicForm';
+import AcademicDetails from './AcademicPlan/AcademicDetails';
+import Course1 from './Courses/Course1';
+
 import './index.css';
 import './styles.css';
 import './header.css';
@@ -21,6 +25,10 @@ const App = () => (
                 <Route path='/' exact component={SignUp}></Route>
                 <Route path='/login' exact component={LoginForm}></Route>
                 <Route path='/home' exact component={Home}></Route>
+                <Route path='/academic-plan/details' exact component={AcademicForm}></Route>
+                <Route path='/academic-plan'component={AcademicDetails}></Route>
+             
+                
                 
                 </Switch>
             </div>
