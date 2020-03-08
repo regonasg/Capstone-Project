@@ -1,7 +1,7 @@
 // JavaScript source code
 // JavaScript source code
 import React, { useState, useEffect } from "react";
-
+import axios from "axios";
 const SSWForm = () => {
 
     const initial_state = [
@@ -9,7 +9,17 @@ const SSWForm = () => {
        
     ];
     const [values, setValues] = useState(initial_state);
-    function handleChange(event) {
+    useEffect(() => {
+        console.log('Component did mount');
+        axios.get('http://localhost:8000/react/phps/list.php')
+            .then(response => {
+                setValues(response.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }, [])
+    const handleDatasChange = event => {
       //  const { name, value } = event.target;
        // setValues({[name]:  value  });
 
@@ -17,6 +27,15 @@ const SSWForm = () => {
         tempValues[event.target.name] = event.target.value;
 
         setValues(tempValues);
+        //let updateData = item.id;
+        
+        /*axios.put('http://localhost:8000/react/phps/update.php?id=' + updateData, obj)
+            .then(response => {
+                console.log(response.data)
+            })
+            .catch(error => {
+                console.log("ERRRR:: ", error.response.data)
+            });*/
     }
 
     return (
@@ -25,7 +44,7 @@ const SSWForm = () => {
             <form >
                 <label>Current Grade</label>
                 <input
-                    onChange={handleChange}
+                    onChange={(event) => handleDatasChange(event)}
                     type="number"
                     name="cgrade"
                     value={values.cgrade}
@@ -34,7 +53,7 @@ const SSWForm = () => {
                 />
                 <label>Desired Grade</label>
                 <input
-                    onChange={handleChange}
+                    onChange={(event) => handleDatasChange(event)}
                     type="number"
                     value={values.dgrade}
                   
@@ -44,7 +63,7 @@ const SSWForm = () => {
                 />
                 <label>Achieved Grade</label>
                 <input
-                    onChange={handleChange}
+                    onChange={(event) => handleDatasChange(event)}
                     // onBlur={handleBlur}
                     value={values.agrade}
                     type="number"
@@ -54,7 +73,7 @@ const SSWForm = () => {
                 />
                 <label>Percentage Grade</label>
                 <input
-                    onChange={handleChange}
+                    onChange={(event) => handleDatasChange(event)}
                     type="number"
                     value={values.pgrade}
 
