@@ -26,7 +26,7 @@ const Course1 = (props) => {
 
     const handleOnChangeGrades = event => {
        
-        const tempData = [datas];
+        const tempData = [...datas];
         tempData[event.target.dataset.id][event.target.name] = event.target.value;
 
         setDatas(tempData);
