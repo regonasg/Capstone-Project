@@ -81,6 +81,7 @@ class LoginForm extends Component {
                         <div className = "errorMsg">{this.state.unameError}</div>
                    </div>
 
+
                    <div className = "form_Div">
                        <label >PIN: </label>
                        <input
@@ -92,7 +93,7 @@ class LoginForm extends Component {
                         required/>
                         <div className = "errorMsg">{this.state.passError}</div>
                    </div>
-
+                   <div></div>
                    <div className = "form_Div">
                        <button type = "submit" className = "form_button">Login</button>
                        <Link exact to='/signup' className = "form_Link" >

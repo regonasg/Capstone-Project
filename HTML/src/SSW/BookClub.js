@@ -1,124 +1,101 @@
 // JavaScript source code
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
+import Progress from "./Progress";
+import axios from "axios";
 
-const BookClub = () => {
-  /* 
-    const Progress = ({percentage}) => {
+ const BookClub = () => {
 
-        const [style, setStyle] = useState({});
-        setTimeout(() => {
-            const newStyle = {
-                opacity: 1,
-                width: `${percentage}%`
-            }
-
-            setStyle(newStyle);
-        },200);
-        return (
-            <div class="progress">
-                <div class="progress-done" style={style}>
-                    {percentage}%
-            </div>
-
-            </div>
-        );
-    };
     
-    const Checkbox = ({type = "checkbox", name, checked = false, onChange }) => {
-
-        return (
-            <input type={type} name={name} checked={checked} onChange={onChange} />
-            );
-
-    };
-   
-        const [checkedItems, setCheckedItems] = useState({});
-        const handleChange = event => {
-            setCheckedItems({ ...checkedItems, [event.target.name]: event.target.checked });
-       
-
-};
-
-        const checkboxes = [
-            {
-                name: "check-box-1",
-                key: "checkBox1",
-                label: "Check Box 1"
-            },
-            {
-                name: "check-box-2",
-                key: "checkBox2",
-                label: "Check Box 2"
-            }
-        ];
-    
-
-    return (
-        <div>
-            <Progress />
-
-            <label>Checked item name : {checkedItems["check-box-1"]} </label> <br />
-            {checkboxes.map(item => (
-                <label key={item.key}>
-                    {item.name}
-                    <Checkbox
-                        name={item.name}
-                        checked={checkedItems[item.name]}
-                        onChange={handleChange}
-                    />
-                </label>
-            ))}
-
-
-            </div>
-        );
-
-
-
-
-};*/
-
-
-
-
     const initial_state = [
         { id: 1, name: "book", checked: false }
 
     ];
     const [datas, setDatas] = useState(initial_state);
-   
+     useEffect(() => {
+         console.log('Component did mount');
+         axios.get('http://localhost:8000/react/phps/list.php')
+             .then(response => {
+                 setDatas(response.data);
+             })
+             .catch(function (error) {
+                 console.log(error);
+             })
+     }, [])
 
-    
+ 
 
-    const handleDatasChange = event => {
+    const handleDatasChange = (event,item) => {
         const tempDatas = [...datas];
 
         tempDatas[event.target.dataset.id][event.target.name] = event.target.value;
 
         setDatas(tempDatas);
+        let updateData = item.id;
+        const obj = {
+            id: updateData,
+            name: item.name
+            
+
+        };
+        axios.put('http://localhost:8000/react/phps/update.php?id=' + updateData, obj)
+            .then(response => {
+                console.log(response.data)
+            })
+            .catch(error => {
+                console.log("ERRRR:: ", error.response.data)
+            });
         console.log("checkedItems: ", datas);
         
     };
-    const toggleChange = event => {
+    const toggleChange = (event,item) => {
         const tempDatas = [...datas];
 
         tempDatas[event.target.dataset.id][event.target.name] = event.target.checked;
 
         setDatas(tempDatas);
-        console.log("checkedItems: ", datas);
+        let updateData = item.id;
+        const obj = {
+            id: updateData,
+            checked: item.checked
 
+        };
+        axios.put('http://localhost:8000/react/phps/update.php?id=' + updateData, obj)
+            .then(response => {
+                console.log(response.data)
+            })
+            .catch(error => {
+                console.log("ERRRR:: ", error.response.data)
+            });
+       
+      
     };
 
     const addNewData = () => {
         var id = (+ new Date() + Math.floor(Math.random() * 999999)).toString(36);
         setDatas(prevDatas => [...prevDatas, { id: id, name: "", checked: false }]);
+        const obj = {
+            id: id,
+            name: "new",
+            checked: false
+        };
+        axios.post('http://localhost:8000/react/phps/insert.php', obj)
+            .then(res => { console.log(res.data) })
+            .catch(error => {
+                console.log("ERRRR:: ", error.response.data);
+            });
+
     };
     const handleRowDel = (data) => {
         // var index = datas.indexOf(data);
         //const newDatas = datas.splice(index, 1);
         //setDatas(newDatas);
+        axios.get('http://localhost:8000/react/phps/delete.php?id=' + data.id)
+            .then(
 
+
+            )
+            .catch(err => console.log(err))
         let tempData = datas.filter(item => item.id !== data.id);
         setDatas(tempData);
     };
@@ -127,9 +104,19 @@ const BookClub = () => {
             return total + Number(item.label);
         }, 0);
     };*/
-   
-   
-    return (
+     const getTotalChecked = () =>{
+         let tempData = datas.filter(item => item.checked).length;
+         let tempD = tempData / datas.length;
+         let tempDa = tempD * 100;
+         return tempDa;
+       
+     }
+  
+  
+     
+     return (
+           <div>
+             <Progress percentage={getTotalChecked()}/>
         <div className="table">
             <div className="table-title">Book Club</div>
             <div className="table-content">
@@ -152,7 +139,7 @@ const BookClub = () => {
                                     data-id={index}
                                     type="text"
                                     value={item.name}
-                                    onChange={handleDatasChange}
+                                    onChange={(event) => handleDatasChange(event, item)}
                                 />
                             </div>
                             <div className="table-data">
@@ -161,7 +148,8 @@ const BookClub = () => {
                                     data-id={index}
                                     type="Checkbox"
                                     
-                                    onChange={toggleChange}
+                                    // onChange={toggleChange}
+                                    onChange={(event) => toggleChange(event, item)}
                                 />
                             </div>
                             <td className="del-cell">
@@ -173,11 +161,13 @@ const BookClub = () => {
                         <div className="table-data">
                             <button onClick={addNewData}>+</button>
                         </div>
-                    </div>
+                         </div>
+                        
                 </div>
                
             </div>
-        </div>
+             </div>
+             </div>
     );
 };
 

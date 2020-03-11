@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Link, withRouter} from 'react-router-dom';
-
+import { Link, withRouter, Route} from 'react-router-dom';
 const initialState = {
     name: '',
     degree: '',
@@ -46,7 +45,7 @@ class AcademicForm extends Component {
             console.log('The form was submitted with the following data: ');
             console.log(this.state);
             this.setState(initialState);
-            this.props.history.push("/home");
+            this.props.history.push("/academic-plan");
 
         }
     }
@@ -152,8 +151,8 @@ class AcademicForm extends Component {
                    <div className = "form_Div">
                        <button type = "submit" className = "form_button">Continue</button>
                    </div>
-
                 </form> 
+
             </div>
         )
     }
