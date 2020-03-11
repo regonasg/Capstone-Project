@@ -4,6 +4,7 @@
 * {
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
+  letter-spacing: 1px;
 }
 
 body {
@@ -11,27 +12,79 @@ body {
   padding: 0;
 }
 
-label{
-  width:100px;
+h3 {
+  font-size: 35px;
+  margin-bottom: 15px;
+  border-bottom-style: solid;
+  border-color:#ffc82e ;
+  text-align: center;
+
 }
-.form-container{
-  width:250px;
-  height:auto;
+
+input, textarea {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  border-radius: 5px;
+  border-color:#cccccc ;
+  border-style: solid;
+  margin-left: 5px;
+  margin-top: 10px;
+}
+
+textarea {
+  height: 70px;
+}
+
+button {
+  border-style: solid;
+  border-color: #004f2e ;
+  padding: 10px;
+  font-size: 16px;
+  margin-left: 5px;
+  background-color:#004f2e;
+  color: white;
+  font-weight: 400;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #ffc82e;
+  border-color: #ffc82e;
+}
+
+/* CSS for Signup and Login */
+.formCentre {
+  width:500px;
   padding:20px 30px;
-  background-color: orange;
+  background-color: rgb(236, 238, 241);
   border-radius: 10px;
   box-shadow: 0 0 10px 0 black;
+  margin: 0 auto;
 }
-.label{
-  Color:white;
+
+.formCentre label {
+  font-weight: 450;
+  font-size: 16px;
+}
+
+.form_Div  {
   padding: 10px;
-  margin: 20px;
-  font-family: serif;
-  font-size: 24;
-  font-style: normal;
-  border-radius: 20px;
-  background-color: green;
 }
+
+/*CSS for homepage */
+
+.homeCentre {
+ /* display: flex;
+  height: 400px;
+  justify-content: space-around;
+  align-items: center; */
+  margin: 100px;
+  padding: 20px;
+  align-content: center;
+
+}
+
 .home_button {
   display: inline-block;
   border-radius: 12px;
@@ -39,13 +92,14 @@ label{
   border: none;
   color: #FFFFFF;
   text-align: center;
-  font-size: 28px;
+  font-size: 25px;
   padding: 25px;
-  width: 200px;
+  width: 300px;
   height: 100px;
   transition: all 0.5s;
   cursor: pointer;
-  margin: 5px;
+  margin: 3px;
+  margin-left: 15px;
 }
 
 .home_button span {
@@ -55,7 +109,7 @@ label{
   transition: 0.5s;
 }
 
-.button span:after {
+.home_button span:after {
   content: '\00bb';
   position: absolute;
   opacity: 0;
@@ -64,11 +118,142 @@ label{
   transition: 0.5s;
 }
 
-.home_button:hover  {
+.home_button:hover span {
   padding-right: 25px;
 }
 
-.home_button:hover {
+.home_button:hover span:after {
   opacity: 1;
   right: 0;
 }
+
+/*UGPA, Sem-Sum, SSW CSS */
+
+h1 {
+  font-size: 50px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  text-align: center;
+  border-bottom-style: solid;
+  border-color:#ffc82e ;
+}
+
+.semsum-table {
+  width:70%; 
+  margin-left:20%; 
+  margin-right:20%;
+  
+}
+.semsum-table tr, .semsum-table td, .semsum-table th, .semsum-table tr, .semsum-table td, .semsum-table th  {
+  border: 1px solid #ddd;
+  font-size: 21px;
+}
+
+
+.semsum-table th, .labs th {
+  background-color: #757373;
+}
+
+.semsum-table tr:nth-child(odd), .labs tr:nth-child(odd){
+  background-color: #f2f2f2;
+}
+
+.addCourse-button {
+  margin-top:10%;
+  margin-left:20%; 
+  margin-right:20%;
+}
+
+.ssw-row, .ugpa-row {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  width: 100%;
+  margin: 1% auto;
+  font-size: 13px;
+}
+
+.sswForm-container {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 10px;
+  width: 55%;
+  margin-top: 45px;
+}
+
+.sswForm-container label {
+  font-weight: 500;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+
+h4 {
+  font-size: 20px;
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+.ssw-button, .ugpa-button{
+  font-size: smaller;
+}
+
+.ssw-table{
+  margin-right: 3px;
+}
+
+.bookclub-table th {
+  border-bottom: solid;
+  width: 80%;
+  margin-right: 20px;
+
+}
+
+.bookclub-table input {
+  width:80%;
+  margin-left:20px;
+  margin-right: 50px;
+}
+
+.progress-done {
+  border:solid;
+}
+
+.ugpa-grade {
+  text-align: right;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.ugpa-table th{
+  font-size: 20px;
+  padding-top: 20px;
+  border-bottom: solid;
+}
+
+/* CSS for Academic Plan */
+.academic_details, .academic_plan {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  width: 100%;
+  margin: 2% auto;
+}
+
+.info_label, .planning-result {
+  display: flex;
+  flex-direction: column;
+  line-height: 50px;
+  justify-content: space-around;
+}
+
+.academic-plan select {
+  padding: 10px;
+  margin-left: 50px;
+}
+
+.academic-plan th, .academic_plan td {
+  margin-top: 10px;
+
+}
+
