@@ -1,110 +1,77 @@
-import React, { Component } from 'react';
-import { Link, withRouter} from 'react-router-dom';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Link, withRouter, useHistory} from 'react-router-dom';
+import {useFormik, yupToFormErrors} from "formik";
+import * as Yup from "yup";
+import "../styles.css";
 
-const initialState = {
-    username: '',
-    password: '',
-    unameError: '',
-    passError: '',
-}
-class LoginForm extends Component {
-    constructor(props) {
-        super(props);
+const LoginForm = () => {
 
-        this.state = initialState;
+    const history = useHistory();
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
+    const datas = useFormik({
+        initialValues: {
+            username: '',
+            password: '',
+        },
+        validationSchema: Yup.object({
+            username: Yup.string()
+                .required('Enter your U of R username'),
+            password: Yup.string()
+                .required('Enter a password'),
+        }),
+        onSubmit: values => {
+            console.log(JSON.stringify(values, null,2));
+            history.push('/home');
+        },
+    });
 
-    handleChange(event) {
-        let target = event.target;
-        let value = target.type === 'checkbox' ? target.checked : target.value;
-        let name = target.name;
+    return (
+        <div className="formCentre">
+            <h3>Login</h3>
+            <form onSubmit={datas.handleSubmit} className="form_Fields">
+                <div className="form_Div">
+                    <label>Username: </label>
+                    <input
+                         id="username"
+                         name="username"
+                         type="text"
+                         onChange={datas.handleChange}
+                         onBlur={datas.handleBlur}
+                         value={datas.values.username}
+                    />
+                    {datas.touched.username && datas.errors.username ? (
+                        <div className="errMsg">{datas.errors.username}</div>
+                    ) : null}
+                </div>
 
-        this.setState({
-            [name]: value
-        });
-    }
-
-    validate = () => {
-        let unameError = '';
-        let passError = '';
-        
-        //username validation
-        if(this.state.username.length <= 0) {
-            unameError = "Please enter your username";
-        }
-        if(unameError) {
-            this.setState({unameError});
-            return false;
-        }
-
-        //password validation
-        if(this.state.password.length <= 0) {
-            passError = "Please enter your password";
-        }
-        if(passError) {
-            this.setState({passError});
-            return false;
-        }
-
-        return true;
-    };
-
-    handleSubmit(event) {
-        event.preventDefault();
-        const isValid = this.validate();
-        if(isValid){
-            console.log('The form was submitted with the following data: ');
-            console.log(this.state);
-            this.setState(initialState);
-            this.props.history.push("/home");
-
-        }
-    }
-
-    render() {
-        return (
-            <div className = "formCentre">
-               <form onSubmit={this.handleSubmit} className = "form_Fields" noValidate>
-                   <div className = "form_Div">
-                       <label >Username: </label>
-                       <input
-                        type = "text"
-                        id = "username"
-                        placeholder = "qwe12r"
-                        name = "username"
-                        value = {this.state.username}
-                        onChange = {this.handleChange}
-                        required/>
-                        <div className = "errorMsg">{this.state.unameError}</div>
-                   </div>
-
-
-                   <div className = "form_Div">
-                       <label >PIN: </label>
-                       <input
-                        type = "password"
-                        id = "password"
-                        name = "password"
-                        value = {this.state.password}
-                        onChange = {this.handleChange}
-                        required/>
-                        <div className = "errorMsg">{this.state.passError}</div>
-                   </div>
-                   <div></div>
+                <div className="form_Div">
+                    <label>Password: </label>
+                    <input
+                         id="password"
+                         name="password"
+                         type="password"
+                         onChange={datas.handleChange}
+                         onBlur={datas.handleBlur}
+                         value={datas.values.password}
+                    />
+                    {datas.touched.password && datas.errors.password ? (
+                        <div className="errMsg">{datas.errors.password}</div>
+                    ) : null}
+                </div>
+                <div></div>
                    <div className = "form_Div">
                        <button type = "submit" className = "form_button">Login</button>
-                       <Link exact to='/signup' className = "form_Link" >
+                   </div>
+                   <div className = "form_Div">
+                       <Link exact to='/' className = "form_Link" >
                            Create an account
                        </Link>
-                   </div>
-
-                </form> 
-            </div>
-        )
-    }
+                    </div>
+            </form>
+        </div>
+    )
+   
 }
 
 export default withRouter(LoginForm);

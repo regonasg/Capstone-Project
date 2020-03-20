@@ -42,55 +42,40 @@ const SemSum = () => {
     };
 
     return (
-        <div className="table">
+        <div>
             <Navbar />
-            <div className="table-title">Semester Summary</div>
-            <div className="table-content">
-                <div className="table-header">
-                    <div className="table-row">
-                        <div className="table-data">
-                            <div>Course</div>
-                        </div>
-                        <div className="table-data">
-                            <div>Current Course Average</div>
-                        </div>
-                    </div>
-                </div>
-                <div className="table-body">
+            <h1>Semester Summary</h1>
+
+            <button className="addCourse-button" onClick={addNewData}>Add Course</button>
+
+                <table className="table">
+                    <tr>
+                        <th>Course</th>
+                        <th>Course Average</th>
+                    </tr>
                     {datas.map((item, index) => (
-                        <div className="table-row" key={index}>
-                            <div className="table-data">
-                                <input
+                        <tr key={index}>
+                            <td><input
                                     name="name"
                                     data-id={index}
                                     type="text"
                                     value={item.name}
-                                    onChange={handleDatasChange}
-                                />
-                            </div>
-                            <div className="table-data">
-                                <input
+                                    onChange={handleDatasChange}/>
+                            </td>
+                            <td><input
                                     name="grade"
                                     data-id={index}
                                     type="number"
                                     value={item.grade}
-                                    onChange={handleDatasChange}
-                                />
-                            </div>
-                            <td className="del-cell">
-                                <input type="button" onClick={() => handleRowDel(item)} value="X" className="del-btn" />
+                                    onChange={handleDatasChange}/>
                             </td>
-                        </div>
+                            <input type="button" onClick={() => handleRowDel(item)} value="X" className="del-btn" />
+                        </tr>
                     ))}
-                    <div className="table-row">
-                        <div className="table-data">
-                            <button onClick={addNewData}>+</button>
-                        </div>
-                    </div>
-                </div>
+                </table>
               
             </div>
-        </div>
+        
     );
 };
 

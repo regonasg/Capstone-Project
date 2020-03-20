@@ -1,161 +1,163 @@
-import React, { Component } from 'react';
-import { Link, withRouter, Route} from 'react-router-dom';
-const initialState = {
-    name: '',
-    degree: '',
-    minor: '',
-    pgpa: '',
-    credits: '',
-    clubs: '',
-    supports: '',
-    error:{}
-}
-class AcademicForm extends Component {
-    constructor(props) {
-        super(props);
+import React from "react";
+import ReactDOM from "react-dom";
+import {useHistory, withRouter} from "react-router-dom";
+import {useFormik} from "formik";
+import * as Yup from "yup";
+import "../styles.css";
 
-        this.state = initialState;
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
+const AcademicForm = () => {
 
-    handleChange(event) {
-        let target = event.target;
-        let value = target.type === 'checkbox' ? target.checked : target.value;
-        let name = target.name;
+   const history = useHistory();
+   
+   const datas = useFormik({
+       initialValues : {
+            name: '',
+            degree: '',
+            minor: '',
+            pgpa: '',
+            credits: '',
+            clubs: '',
+            supports: '',
+        },
+        validationSchema: Yup.object({
+            name:Yup.string()
+                .required('Enter your name'),
+            degree: Yup.string()
+                .required('Enter your degree'),
+            pgpa: Yup.number()
+                .min(60, 'Your required PGPA cannot be less than 60%')
+                .required('Enter the PGPA required for your degree'),
+            credits: Yup.number()
+                .required('Enter the total number of credits needed for your degree'),
+            clubs:Yup.string()
+                .required('Enter the school or community organizations/clubs that you will be participating in'),
+            supports: Yup.string()
+                .required('Enter the list of supports that you will use'),
+        }),
+        onSubmit: values => {
+            console.log(JSON.stringify(values, null,2));
+            history.push('/academic-plan');
+        },
+    });
 
-        this.setState({
-            [name]: value
-        });
-    }
+    return (
+        <div className="formCentre">
+            <h1>Academic</h1>
+            <form className="form_Fields" onSubmit={datas.handleSubmit}>
+                <div className="form_Div">
+                    <label htmlFor="name">Name: </label>
+                    <input 
+                        id="name"
+                        name="name"
+                        type="text"
+                        onChange={datas.handleChange}
+                        onBlur={datas.handleBlur}
+                        value={datas.values.name}
+                    />
+                    {datas.touched.name && datas.errors.name ? (
+                        <div className="errMsg">{datas.errors.name}</div>
+                    ) : null}
+                </div>
 
-    validate = () => {
-        let errors = this.state.error;
-        
-        //username validation
+                <div className="form_Div">
+                    <label htmlFor="degree">Degree: </label>
+                    <input 
+                        id="degree"
+                        name="degree"
+                        type="text"
+                        onChange={datas.handleChange}
+                        onBlur={datas.handleBlur}
+                        value={datas.values.degree}
+                    />
+                    {datas.touched.degree && datas.errors.degree ? (
+                        <div className="errMsg">{datas.errors.degree}</div>
+                    ) : null}
+                </div>
 
-        return true;
-    };
+                <div className="form_Div">
+                    <label htmlFor="pgpa">RequiredPGPA : </label>
+                    <input 
+                        id="pgpa"
+                        name="pgpa"
+                        type="text"
+                        onChange={datas.handleChange}
+                        onBlur={datas.handleBlur}
+                        value={datas.values.pgpa}
+                    />
+                    {datas.touched.pgpa && datas.errors.pgpa ? (
+                        <div className="errMsg">{datas.errors.pgpa}</div>
+                    ) : null}
+                </div>
 
-    handleSubmit(event) {
-        event.preventDefault();
-        const isValid = this.validate();
-        if(isValid){
-            console.log('The form was submitted with the following data: ');
-            console.log(this.state);
-            this.setState(initialState);
-            this.props.history.push("/academic-plan");
+                <div className="form_Div">
+                    <label htmlFor="minor">Minor: (if applicable) </label>
+                    <input 
+                        id="minor"
+                        name="minor"
+                        type="text"
+                        onChange={datas.handleChange}
+                        onBlur={datas.handleBlur}
+                        value={datas.values.minor}
+                    />
+                </div>
 
-        }
-    }
+                <div className="form_Div">
+                    <label htmlFor="credits">Total Credit Hours: </label>
+                    <input 
+                        id="credits"
+                        name="credits"
+                        type="text"
+                        onChange={datas.handleChange}
+                        onBlur={datas.handleBlur}
+                        value={datas.values.credits}
+                    />
+                    {datas.touched.credits && datas.errors.credits ? (
+                        <div className="errMsg">{datas.errors.credits}</div>
+                    ) : null}
+                </div>
 
-    render() {
-        return (
-            <div className = "formCentre">
-                <h3>Academic Details</h3>
-               <form onSubmit={this.handleSubmit} className = "form_Fields" noValidate>
-                   <div className = "form_Div">
-                       <label >Name: </label>
-                       <input
-                        type = "text"
-                        id = "name"
-                        placeholder = "John Smith"
-                        name = "name"
-                        value = {this.state.name}
-                        onChange = {this.handleChange}
-                        required/>
-                        <div className = "errorMsg">{this.state.error.name}</div>
-                   </div>
-
-                   <div className = "form_Div">
-                       <label >Degree: </label>
-                       <input
-                        type = "text"
-                        id = "degree"
-                        name = "degree"
-                        placeholder = "SSE"
-                        value = {this.state.degree}
-                        onChange = {this.handleChange}
-                        required/>
-                        <div className = "errorMsg">{this.state.error.degree}</div>
-                   </div>
-
-                   <div className = "form_Div">
-                       <label >Minor (if applicable): </label>
-                       <input
-                        type = "text"
-                        id = "minor"
-                        name = "minor"
-                        placeholder = "History"
-                        value = {this.state.minor}
-                        onChange = {this.handleChange}
-                        required/>
-                        <div className = "errorMsg">{this.state.error.minor}</div>
-                   </div>
-
-                   <div className = "form_Div">
-                       <label >PGPA Required: </label>
-                       <input
-                        type = "number"
-                        id = "pgpa"
-                        name = "pgpa"
-                        placeholder = "60"
-                        value = {this.state.pgpa}
-                        onChange = {this.handleChange}
-                        required/>
-                        <div className = "errorMsg">{this.state.error.pgpa}</div>
-                   </div>
-
-                   <div className = "form_Div">
-                       <label >Total Credits Needed: </label>
-                       <input
-                        type = "number"
-                        id = "credits"
-                        name = "credits"
-                        placeholder = "136"
-                        value = {this.state.degree}
-                        onChange = {this.handleChange}
-                        required/>
-                        <div className = "errorMsg">{this.state.error.credits}</div>
-                   </div>
-
-                   <div className = "form_Div">
-                       <label>School and Community Organizations/Clubs/Event I will partigicpate in:
-                                (your program webiste is a good place to look)  </label>
-                        <textarea
-                        type = "type"
-                        id = "clubs"
-                        name = "clubs"
+                <div className="form_Div">
+                    <label htmlFor="clubs">School and Community Organizations/Clubs/Event I will partigicpate in:
+                                (your program website is a good place to look): </label>
+                    <textarea 
+                        id="clubs"
+                        name="clubs"
+                        type="text"
+                        onChange={datas.handleChange}
+                        onBlur={datas.handleBlur}
+                        value={datas.values.clubs}
                         placeholder = "Type here the organizations, groups, clubs, and events that you will be involved in and/or volunteer for (your faculty website is a great place to look for options)"
-                        value = {this.state.clubs}
-                        onChange = {this.handleChange}
-                        required />
-                        <div className = "errorMsg">{this.state.error.clubs}</div>
-                   </div>
+                    />
+                    {datas.touched.clubs && datas.errors.clubs ? (
+                        <div className="errMsg">{datas.errors.clubs}</div>
+                    ) : null}
+                </div>
 
-                   <div className = "form_Div">
-                       <label>Supports I will use: <br/>
-                                (E.g., Tutoring, Global Learning Centre) </label>
-                        <textarea
-                        type = "type"
-                        id = "supports"
-                        name = "supports"
+                <div className="form_Div">
+                    <label htmlFor="supports">Supports I will use: <br/>
+                                (E.g., Tutoring, Global Learning Centre): </label>
+                    <textarea 
+                        id="supports"
+                        name="supports"
+                        type="text"
+                        onChange={datas.handleChange}
+                        onBlur={datas.handleBlur}
+                        value={datas.values.supports}
                         placeholder = "Type here the supports you might need - e.g., tutoring, meet with professors, Global Learning Centre, Aboriginal Student Centre, Counselling, etc."
-                        value = {this.state.supports}
-                        onChange = {this.handleChange}
-                        required />
-                        <div className = "errorMsg">{this.state.error.supports}</div>
-                   </div>
+                    />
+                    {datas.touched.supports && datas.errors.supports ? (
+                        <div className="errMsg">{datas.errors.supports}</div>
+                    ) : null}
+                </div>
 
-                   <div className = "form_Div">
+                <div className = "form_Div">
                        <button type = "submit" className = "form_button">Continue</button>
-                   </div>
-                </form> 
+                </div>
 
-            </div>
-        )
-    }
+            </form>
+        </div>
+    );
 }
 
 export default withRouter(AcademicForm);

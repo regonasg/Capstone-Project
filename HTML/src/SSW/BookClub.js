@@ -115,35 +115,29 @@ import axios from "axios";
   
      
      return (
-           <div>
-             <Progress percentage={getTotalChecked()}/>
-        <div className="table">
-            <div className="table-title">Book Club</div>
-            <div className="table-content">
-                <div className="table-header">
-                    <div className="table-row">
-                        <div className="table-data">
-                            <div>Book Section</div>
-                        </div>
-                        <div className="table-data">
-                            <div>Read ?</div>
-                        </div>
-                    </div>
-                </div>
-                <div className="table-body">
-                    {datas.map((item, index) => (
-                        <div className="table-row" key={index}>
-                            <div className="table-data">
-                                <input
+        <div className="ssw-table">
+            <h4>Book Club</h4>
+
+            <Progress percentage={getTotalChecked()}/>
+            <button className="ssw-button" onClick={addNewData}>Add Book Section</button>
+            <table>
+                <tr>
+                    <th>Book Section</th>
+                    <th>Read?</th>
+                </tr>
+
+                {datas.map((item, index) => (
+                    <tr key={index}>
+                        <td> <input
                                     name="name"
                                     data-id={index}
                                     type="text"
                                     value={item.name}
                                     onChange={(event) => handleDatasChange(event, item)}
                                 />
-                            </div>
-                            <div className="table-data">
-                                <input
+                        </td>
+                        <td> <input
+                                    className ="checkbox"
                                     name="checked"
                                     data-id={index}
                                     type="Checkbox"
@@ -151,23 +145,13 @@ import axios from "axios";
                                     // onChange={toggleChange}
                                     onChange={(event) => toggleChange(event, item)}
                                 />
-                            </div>
-                            <td className="del-cell">
-                                <input type="button" onClick={() => handleRowDel(item)} value="X" className="del-btn" />
-                            </td>
-                        </div>
+                        </td>
+                        <td> <input type="button" onClick={() => handleRowDel(item)} value="X" className="del-btn" /></td>
+                    </tr>
                     ))}
-                    <div className="table-row">
-                        <div className="table-data">
-                            <button onClick={addNewData}>+</button>
-                        </div>
-                         </div>
-                        
-                </div>
-               
+            </table>
             </div>
-             </div>
-             </div>
+           
     );
 };
 

@@ -23,7 +23,7 @@ import Lab5 from './Labs/Lab5';
 import Lab6 from './Labs/Lab6';
 
 import './index.css';
-//import './styles.css';
+import './styles.css';
 import './header.css';
 
 
@@ -53,13 +53,13 @@ const App = () => (
                 <Route path='/lab4' exact component={Lab4}></Route>
                 <Route path='/lab5' exact component={Lab5}></Route>
                 <Route path='/lab6' exact component={Lab6}></Route>
-
-
-
+    
+                
+                
                 </Switch>
             </div>
         </Router>
-
+    
 );
 
 const SignUp = () => (
@@ -67,7 +67,8 @@ const SignUp = () => (
         <SignUpForm />
     </div>
 );
-
+   
 
 
 ReactDOM.render(<App />, document.getElementById('root'));
+

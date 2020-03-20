@@ -1,94 +1,152 @@
-import React, { Component } from 'react';
-import { Link} from 'react-router-dom';
-class SignUpForm extends Component {
-    constructor(props) {
-        super(props);
+import React from "react";
+import ReactDOM from "react-dom";
+import { Link, withRouter, useHistory} from 'react-router-dom';
+import {useFormik, yupToFormErrors} from "formik";
+import * as Yup from "yup";
+import "../styles.css";
 
-        this.state = {
+const SignUpForm = () => {
+    const history = useHistory();
+
+    //validation function for custom validation (mostly for email)
+    const validate = values => {
+        const errors = {};
+
+        if(!values.username){
+            errors.username = 'Enter your U of R username';
+        }
+
+        if(!values.email){
+            errors.email ='Enter your U of R email address';
+        }
+        else if(!/^[A-Z0-9._%+-]+@uregina.ca$/i.test(values.email)) {
+            errors.email = 'Invalid email address (it has to be your U of R email)';
+        }
+
+        if(!values.student_id){
+            errors.student_id ='Enter your U of R student ID';
+        }
+        else if(!/^\d*$/.test(values.student_id)) {
+            errors.student_id = 'Invalid student ID';
+        }
+        else if(values.student_id.length < 9 || values.student_id.length > 9) {
+            errors.student_id = 'Your student ID consists of 9 numbers';
+        }
+
+        if(!values.password) {
+            errors.password = 'Enter a password';
+        }
+
+        if(values.confirmPswd !== values.password) {
+            errors.confirmPswd = 'Password does not match'
+        }
+
+        return errors;
+    }
+    const datas = useFormik({
+        initialValues : {
             email: '',
             student_id: '',
             username: '',
-            password: ''
-        };
+            password: '',
+            confirmPswd: '',
+        },
+        validate,
+        onSubmit: values => {
+            console.log(JSON.stringify(values, null,2));
+            history.push('/login');
+        },
+    });
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
+    return (
+        <div className="formCentre">
+            <h3>Sign Up</h3>
+            <form onSubmit={datas.handleSubmit}>
+            <div className="form_Div">
+                    <label>Username: </label>
+                    <input
+                         id="username"
+                         name="username"
+                         type="text"
+                         onChange={datas.handleChange}
+                         onBlur={datas.handleBlur}
+                         value={datas.values.username}
+                    />
+                    {datas.touched.username && datas.errors.username ? (
+                        <div className="errMsg">{datas.errors.username}</div>
+                    ) : null}
+                </div>
 
-    handleChange(event) {
-        let target = event.target;
-        let value = target.type === 'checkbox' ? target.checked : target.value;
-        let name = target.name;
+                <div className="form_Div">
+                    <label>Email: </label>
+                    <input
+                         id="email"
+                         name="email"
+                         type="text"
+                         onChange={datas.handleChange}
+                         onBlur={datas.handleBlur}
+                         value={datas.values.email}
+                    />
+                    {datas.touched.email && datas.errors.email ? (
+                        <div className="errMsg">{datas.errors.email}</div>
+                    ) : null}
+                </div>
 
-        this.setState({
-            [name]: value
-        });
-    }
+                <div className="form_Div">
+                    <label>Student ID: </label>
+                    <input
+                         id="student_id"
+                         name="student_id"
+                         type="text"
+                         onChange={datas.handleChange}
+                         onBlur={datas.handleBlur}
+                         value={datas.values.student_id}
+                    />
+                    {datas.touched.student_id && datas.errors.student_id ? (
+                        <div className="errMsg">{datas.errors.student_id}</div>
+                    ) : null}
+                </div>
 
-    handleSubmit(event) {
-        event.preventDefault();
+                <div className="form_Div">
+                    <label>Password: </label>
+                    <input
+                         id="password"
+                         name="password"
+                         type="password"
+                         onChange={datas.handleChange}
+                         onBlur={datas.handleBlur}
+                         value={datas.values.password}
+                    />
+                    {datas.touched.password && datas.errors.password ? (
+                        <div className="errMsg">{datas.errors.password}</div>
+                    ) : null}
+                </div>
 
-        console.log('The form was submitted with the following data: ');
-        console.log(this.state);
-    }
+                <div className="form_Div">
+                    <label>Confirm Password: </label>
+                    <input
+                         id="confirmPswd"
+                         name="confirmPswd"
+                         type="password"
+                         onChange={datas.handleChange}
+                         onBlur={datas.handleBlur}
+                         value={datas.values.confirmPswd}
+                    />
+                    {datas.touched.confirmPswd && datas.errors.confirmPswd ? (
+                        <div className="errMsg">{datas.errors.confirmPswd}</div>
+                    ) : null}
+                </div>
 
-    render() {
-        return (
-            <div className = "formCentre">
-                <h3>Sign Up</h3>
-               <form onSubmit={this.handleSubmit} className = "form_Fields">
-                   <div className = "form_Div">
-                       <label >Username: </label>
-                       <input
-                        type = "text"
-                        id = "username"
-                        placeholder = "qwe12r"
-                        name = "username"
-                        value = {this.state.username}
-                        onChange = {this.handleChange}/>
-                   </div>
-
-                   <div className = "form_Div">
-                       <label >Email: </label>
-                       <input
-                        type = "text"
-                        id = "username"
-                        placeholder = "qwe12r@uregina.ca"
-                        name = "email"
-                        value = {this.state.email}
-                        onChange = {this.handleChange}/>
-                   </div>
-
-                   <div className = "form_Div">
-                       <label >Student Id: </label>
-                       <input
-                        type = "text"
-                        id = "student_id"
-                        placeholder = "200312345"
-                        name = "student_id"
-                        value = {this.state.student_id}
-                        onChange = {this.handleChange}/>
-                   </div>
-
-                   <div className = "form_Div">
-                       <label >PIN: </label>
-                       <input
-                        type = "password"
-                        id = "password"
-                        name = "password"
-                        value = {this.state.password}
-                        onChange = {this.handleChange}/>
-                   </div>
-
-                   <div className = "form_Div">
+                <div className = "form_Div">
                        <button type = "submit" className = "form_button">Sign Up</button>
-                       <Link  to={"/login"}>Already have an account? </Link>
+                   </div>
+                   <div className = "form_Div">
+                        <Link  to={"/login"}>Already have an account? </Link>
                    </div>
 
-                </form> 
-            </div>
-        )
-    }
+            </form>
+        </div>
+    )
 }
 
-export default SignUpForm;
+export default withRouter(SignUpForm);

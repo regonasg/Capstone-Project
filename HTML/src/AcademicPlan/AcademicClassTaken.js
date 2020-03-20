@@ -50,7 +50,7 @@ const AcademicClassTaken = () => {
     return (
         <div>
             <h4>Classes Taken: </h4>
-        <table>
+        <table className = "academic-plan">
             <tr>
                 <th>Credit Hours</th>
                 <th>Course Number</th>
@@ -110,6 +110,7 @@ const AcademicClassTaken = () => {
                     </td>
                     <td><select
                         name="tcourseReq"
+                        
                         data-id={index}
                         value={item.tcourseReq}
                         onChange={handleChange}>

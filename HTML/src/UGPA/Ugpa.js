@@ -39,72 +39,52 @@ const Ugpa = () => {
 
     return (
         <div>
-            <Navbar /> 
+           <Navbar /> 
             <h1>UGPA</h1>
+        <div  className="ugpa-row">
+        <div className="ugpa">
         <div className="table">
-            
-            <div className="table-title">Completed Courses</div>
-            <div className="table-content">
-               
-               
-                <div className="table-header">
-                    <div className="table-row">
-                        <div className="table-data">
-                            <div>Subject</div>
-                        </div>
-                        <div className="table-data">
-                            <div>Grade</div>
-                        </div>
-                    </div>
-                </div>
-                <div className="table-body">
-                    {datas.map((item, index) => (
-                        <div className="table-row" key={index}>
-                            <div className="table-data">
-                                <input
-                                    name="name"
-                                    data-id={index}
-                                    type="text"
-                                    value={item.name}
-                                    onChange={handleDatasChange}
-                                />
-                            </div>
-                            <div className="table-data">
-                                <input
-                                    name="grade"
-                                    data-id={index}
-                                    type="number"
-                                    value={item.grade}
-                                    onChange={handleDatasChange}
-                                />
-                            </div>
-                            <td className="del-cell">
-                                <input type="button" onClick={() => handleRowDel(item)} value="X" className="del-btn" />
-                            </td>
-                        </div>
-                    ))}
-                    <div className="table-row">
-                        <div className="table-data">
-                            <button onClick={addNewData}>+</button>
-                        </div>
-                        </div>
+        <h4>Completed Courses</h4>
 
-                    </div>
-                    <div className="table-footer">
-                        <div className="table-row">
-                            <div className="table-data">
-                                <div>Current UGPA</div>
-                            </div>
-                            <div className="table-data">
-                                <div>{getTotalDatas()/datas.length}</div>
-                            </div>
-                        </div>
-                    </div>
+        <button className = "ugpa-button" onClick={addNewData}>Add Subject</button>
+        <table className="ugpa-table">
+            <tr>
+                <th>Subject</th>
+                <th>Grade</th>
+            </tr>
 
-            </div>
-            </div>
-            <Ugpa2/>
-            </div>
+        {datas.map((item, index) => (
+            <tr key={index}>
+                <td> <input
+                    name="name"
+                    data-id={index}
+                    type="text"
+                    value={item.name}
+                    onChange={handleDatasChange}/>
+                </td>
+                <td> <input
+                    name="grade"
+                    data-id={index}
+                    type="number"
+                    value={item.grade}
+                    onChange={handleDatasChange}/>
+                </td>
+                <td><input type="button" onClick={() => handleRowDel(item)} value="X" className="del-btn" /></td>
+            </tr>
+        ))}
+
+        <tr className="ugpa-grade">
+            <td>Current UGPA</td>
+            <td>{getTotalDatas()/datas.length}</td>
+        </tr>
+
+        </table>
+    </div>
+    </div>
+        <Ugpa2/>
+    </div>
+               
+    </div>
     );
 };
 

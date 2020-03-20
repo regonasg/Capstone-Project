@@ -52,7 +52,7 @@ const AcademicFutureClasses = () => {
     return (
         <div>
             <h4>Future Classes: </h4>
-        <table>
+        <table className = "academic-plan">
             <tr>
                 <th>Credit Hours</th>
                 <th>Course Number</th>

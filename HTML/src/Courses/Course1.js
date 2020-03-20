@@ -69,6 +69,19 @@ const Course1 = (props) => {
        
     };
 
+    const calculateTimeLeft = () => {
+        const difference = +new Date(values.dueDate1) - new Date();
+        let timeLeft = {};
+
+        if(difference > 0) {
+            timeLeft = {
+                days: Math.floor(difference/ (1000 * 60 * 60 * 24))
+            };
+        }
+
+        return timeLeft;
+    }
+
   
   
 
@@ -133,7 +146,7 @@ const Course1 = (props) => {
                             value={item.dueDate1}
                             onChange={handleOnChangeGrades}/>
                         </td>
-                        <td><p>here is where the countdown till the due date will go</p></td>
+                        <td><p>{calculateTimeLeft}</p></td>
                         <td><input 
                             name="weight1"
                             data-id={index}
