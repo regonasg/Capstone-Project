@@ -9,8 +9,7 @@ const Course1 = (props) => {
         form1: [{
             currGrade1: '',
             desiredGrades1: '',
-            avrGrade1: '',
-            lab1: ''
+            avrGrade1: ''
         }],
         grades1: [{
             id: 1,
@@ -23,6 +22,8 @@ const Course1 = (props) => {
 
     const [values, setValues] = useState(initial_state.form1);
     const[datas, setDatas] = useState(initial_state.grades1);
+    const[form, setForm] = useState(false);
+    const[checked, setChecked] = useState(false);
 
     const handleOnChangeGrades = event => {
        
@@ -41,6 +42,11 @@ const Course1 = (props) => {
         tempValues[event.target.name] = event.target.value;
 
         setValues(tempValues);
+    }
+
+    const handleChecked = () => {
+        setChecked(!checked);
+        console.log(checked);
     }
 
     const addGrades = () =>  {
@@ -65,7 +71,10 @@ const Course1 = (props) => {
     };
 
     const handleOnSubmit = (event) => {
-        event.preventDefualt();
+        event.preventDefault();
+        setForm(!form);
+        
+        console.log(values);
        
     };
 
@@ -82,7 +91,9 @@ const Course1 = (props) => {
         return timeLeft;
     }
 
-  
+    const showForm = () => {
+        setForm(!form);
+    };
   
 
     return (
@@ -90,7 +101,11 @@ const Course1 = (props) => {
             <Navbar />
 
             <h1>Course</h1>
-            <form onSubmit={handleOnSubmit}>
+            
+            <button onClick={showForm}>Click here to enter grade information</button>
+            {(form) ? 
+                <div className="course-form">
+                 <form onSubmit={handleOnSubmit}>
                 <label>Current Grade: </label>
                 <input 
                     type = "number"
@@ -107,19 +122,25 @@ const Course1 = (props) => {
                     placeholder="Enter your desired grade"
                     onChange={handleOnChangeForm}/>
                 
-                <label>Is there a lab?</label>
-                <select value={values.lab1} onChange={handleOnChangeForm}  >
-                    <option value="yes">Yes</option>
-                    <option  value="no">No</option>
-                </select>
-
+                <label>Is there is Lab?</label>
+                <input className="checkbox1" type="checkbox" onChange={handleChecked} />
+                <br />
                 <button type="submit">Submit</button>
-            </form>
+                </form>
+                </div>
+            :null}
+            <br />
+            <br />
 
-            <label>Average Grade Needed on Remaining Items:  </label>
-            <p>Here is where the remainig grades calculated will go</p>
+            {(checked) ? <Link to="/lab1"><button>Lab</button></Link>:null}
 
-            <Link to="/lab1"><button>Lab</button></Link>
+            <div className="grade-remaining">
+                <label>Average Grade Needed on Remaining Items:  </label>
+                <p>Here is where the remainig grades calculated will go</p>
+            </div>
+            
+
+            
 
             <table>
                 <tr>
@@ -128,7 +149,6 @@ const Course1 = (props) => {
                     <th>Due in</th>
                     <th>Weight (%)</th>
                     <th>Grade (%)</th>
-                    <td><button onClick={addGrades}>+</button></td>
                 </tr>
                 {datas.map((item, index) => (
                     <tr key={index}>
@@ -161,10 +181,10 @@ const Course1 = (props) => {
                             value={item.actualGrade1}
                             onChange={handleOnChangeGrades}/>
                         </td>
-                        <td><button onClick={addGrades}>+</button></td>
-                        <td><button onClick={() => handleDelRow(item)}>-</button></td>
+                        <td><button onClick={() => handleDelRow(item)}>X</button></td>
                     </tr>
                 ))}
+                <button onClick={addGrades}>+ Add New Course Item</button>
             </table>
 
             <Route path="/lab1" component={Lab1}></Route>

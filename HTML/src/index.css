@@ -46,12 +46,13 @@ textarea {
 
 /* CSS for Signup and Login */
 .formCentre {
-  width:500px;
+  width: 500px;
   padding:20px 30px;
   background-color: rgb(236, 238, 241);
   border-radius: 10px;
   box-shadow: 0 0 10px 0 black;
   margin: 0 auto;
+  height: 50px;
 }
 
 .formCentre label {
@@ -156,16 +157,16 @@ h1 {
   margin-right:20%;
 }
 
-.ssw-row, .ugpa-row {
+.ssw-row, .ugpa-row, {
   display: flex;
   justify-content: space-around;
   flex-direction: row;
-  wdith: 100%;
+  width: 100%;
   margin: 1% auto;
   font-size: 13px;
 }
 
-.sswForm-container {
+.sswForm-container, .course-form {
   display: flex;
   flex-direction: column;
   text-align: left;
@@ -211,8 +212,8 @@ h4 {
 }
 
   .ugpa{
-    width: 200%;
-    border: solid;
+   width: 300%;
+
   }
 
 .ugpa-grade {
@@ -225,6 +226,7 @@ h4 {
   font-size: 20px;
   padding-top: 20px;
   border-bottom: solid;
+  width: 100%;
 }
 
 .checkbox {
@@ -232,6 +234,8 @@ h4 {
   height: 40px;
   width: 40px;
 }
+
+
 
 /* CSS for Academic Plan */
 .academic_details, .academic_plan {
@@ -269,3 +273,21 @@ h4 {
   box-shadow: 0 0 10px 0 black;
   margin: 0 auto;
 }
+
+/* Lab checkbox */
+.lab-label {
+  float:left;
+  width:10%;
+}
+
+.checkbox1 {
+  margin-left: 80px;
+  height: 35px;
+  width: 35px;
+}
+
+/* Class CSS */
+.grade-remaining {
+  text-align: center;
+}
+

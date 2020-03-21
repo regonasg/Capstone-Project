@@ -8,6 +8,14 @@ body {
   overflow-x: hidden;
 }
 
+img {
+  width: 250px;
+  padding: 5px;
+  margin: none;
+  height: 100px;
+}
+
+
 /** navigation style*/
 nav {
   display: flex;
@@ -21,7 +29,6 @@ nav {
 .logo {
   text-transform: uppercase;
   letter-spacing: 5px;
-  font-size: 22px;
   padding-left: 20px;
   flex:initial;
   width: 800px;
@@ -29,13 +36,14 @@ nav {
 
 .nav-links {
   display: flex;
-  justify-content:space-around;
+  justify-content:space-between;
   width: 30%;
 }
 
 .nav-links li{
   list-style:none;
   color: #004f2e;
+  width: 50%;
 }
 
 .nav-links a {
@@ -67,7 +75,7 @@ nav {
 #sidebar{
   position: absolute;
   right:0px;
-  top: 9vh;
+  top: 10vh;
   height: 100%;
   background-color: #ffc82e;
   display: flex;
@@ -85,7 +93,7 @@ nav {
 
 .burger div{
   display: block;
-  width: 25px;
+  width: 30px;
   height: 3px;
   background: #004f2e;
   margin: 5px 0px;

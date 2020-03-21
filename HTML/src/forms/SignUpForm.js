@@ -4,6 +4,8 @@ import { Link, withRouter, useHistory} from 'react-router-dom';
 import {useFormik, yupToFormErrors} from "formik";
 import * as Yup from "yup";
 import "../styles.css";
+import "../index.css";
+import UofR from "../uofrlogo.png";
 
 const SignUpForm = () => {
     const history = useHistory();
@@ -60,6 +62,7 @@ const SignUpForm = () => {
 
     return (
         <div className="formCentre">
+            <img src={UofR} alt="UofR" />
             <h3>Sign Up</h3>
             <form onSubmit={datas.handleSubmit}>
             <div className="form_Div">

@@ -3,13 +3,13 @@ import { render } from 'react-dom';
 import AcademicForm from './AcademicForm1';
 import AcademicClassTaken from './AcademicClassTaken'
 import AcademicFutureClasses from './AcademicFutureClasses';
-import Navbar from '../Navbar';
+import AcademicNavBar from './AcademicNavBar'
 
 const AcademicDetails = () => {
     
         return (
             <div>
-                <Navbar />
+                <AcademicNavBar />
                 <h1>Acadmic Plan</h1>
                 <div className = "academic_details">
                     <div className="info_label">

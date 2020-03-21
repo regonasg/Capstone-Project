@@ -22,6 +22,8 @@ const Course5 = () => {
 
     const [values, setValues] = useState(initial_state.form5);
     const[datas, setDatas] = useState(initial_state.grades5);
+    const[form, setForm] = useState(false);
+    const[checked, setChecked] = useState(false);
 
     const handleOnChangeGrades = event => {
        
@@ -40,6 +42,11 @@ const Course5 = () => {
         tempValues[event.target.name] = event.target.value;
 
         setValues(tempValues);
+    }
+
+    const handleChecked = () => {
+        setChecked(!checked);
+        console.log(checked);
     }
 
     const addGrades = () =>  {
@@ -64,8 +71,15 @@ const Course5 = () => {
     };
 
     const handleOnSubmit = (event) => {
-        event.preventDefualt();
+        event.preventDefault();
+        setForm(!form);
+        
+        console.log(values);
        
+    };
+
+    const showForm = () => {
+        setForm(!form);
     };
 
   
@@ -75,38 +89,44 @@ const Course5 = () => {
             <Navbar />
 
             <h1>Course</h1>
-            <form onSubmit={handleOnSubmit}>
-                <label>Current Grade: </label>
-                <input 
-                    type = "number"
-                    name ="currGrade5"
-                    value={values.currGrade5}
-                    placeholder="Enter your current grade"
-                    onChange={handleOnChangeForm}/>
 
-                <label>Desired Grade: </label>
-                <input 
-                    type = "number"
-                    name ="desiredGrade5"
-                    value={values.desiredGrades5}
-                    placeholder="Enter your desired grade"
-                    onChange={handleOnChangeForm}/>
-                
-                <label>Is there a lab?</label>
-                <select value={values.lab5} onChange={handleOnChangeForm}  >
-                    <option value="yes">Yes</option>
-                    <option  value="no">No</option>
-                </select>
+            <button onClick={showForm}>Click here to enter grade information</button>
 
-                <button type="submit">Submit</button>
-            </form>
+            {(form) ? 
+                <div className="course-form">
+                    <form onSubmit={handleOnSubmit}>
+                        <label>Current Grade: </label>
+                        <input 
+                            type = "number"
+                            name ="currGrade5"
+                            value={values.currGrade5}
+                            placeholder="Enter your current grade"
+                            onChange={handleOnChangeForm}/>
 
-            
+                        <label>Desired Grade: </label>
+                        <input 
+                            type = "number"
+                            name ="desiredGrade5"
+                            value={values.desiredGrades5}
+                            placeholder="Enter your desired grade"
+                            onChange={handleOnChangeForm}/>
+                        
+                        <label>Is there is Lab?</label>
+                        <input className="checkbox1" type="checkbox" onChange={handleChecked} />
+                        <br />
+                        <button type="submit">Submit</button>
+                    </form>
+            </div>
+            :null}
+            <br />
+            <br />
 
-            <label>Average Grade Needed on Remaining Items:  </label>
-            <p>Here is where the remainig grades calculated will go</p>
+            {(checked) ? <Link to="/lab1"><button>Lab</button></Link>:null}
 
-            <Link to='/lab5'><button>Lab</button></Link>
+            <div className="grade-remaining">
+                <label>Average Grade Needed on Remaining Items:  </label>
+                <p>Here is where the remaining grades calculated will go</p>
+            </div>
 
             <table>
                 <tr>
@@ -115,7 +135,6 @@ const Course5 = () => {
                     <th>Due in</th>
                     <th>Weight (%)</th>
                     <th>Grade (%)</th>
-                    <td><button onClick={addGrades}>+</button></td>
                 </tr>
                 {datas.map((item, index) => (
                     <tr key={index}>
@@ -133,7 +152,7 @@ const Course5 = () => {
                             value={item.dueDate5}
                             onChange={handleOnChangeGrades}/>
                         </td>
-                        <td><p>here is where the countdown till the due date will go</p></td>
+                        <td><p></p></td>
                         <td><input 
                             name="weight5"
                             data-id={index}
@@ -148,11 +167,12 @@ const Course5 = () => {
                             value={item.actualGrade5}
                             onChange={handleOnChangeGrades}/>
                         </td>
-                        <td><button onClick={addGrades}>+</button></td>
-                        <td><button onClick={() => handleDelRow(item)}>-</button></td>
+                        
+                        <td><button onClick={() => handleDelRow(item)}>X</button></td>
                     </tr>
                 ))}
             </table>
+            <button onClick={addGrades}>+ Add New Course Item</button>
         </div>
     )
 

@@ -15,7 +15,7 @@ import Course5 from '../Courses/Course5';
 import Course6 from '../Courses/Course6';
 import Lab1 from '../Labs/Lab1';
 import Lab2 from '../Labs/Lab2';
-import Navbar from '../Navbar';
+import HomeNavBar from './HomeNavBar';
 import AddCourses from './AddCourses';
 
 //import '../index.css';
@@ -26,7 +26,7 @@ export class Home extends Component {
 
     HomeContent = () => (
         <div>
-            <Navbar />  
+            <HomeNavBar />  
             <div className = "homeCentre">
             <Link to='/instruction' >
                 <button className="home_button" ><span>Instruction </span></button>

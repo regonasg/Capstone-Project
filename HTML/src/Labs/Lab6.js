@@ -43,11 +43,15 @@ const Lab6 = () => {
     return (
         <div>
             <Navbar />
-            <h4>Lab</h4>
+            <h1>Lab</h1>
             <Link to="/course5"><button>Back to Course</button></Link>
             <div className="currentGrade">
+            
+            <div className="grade-remaining">
                 <label>Current Lab Grades: </label>
                 <p>This is where the current lab grade will go</p>
+            </div>
+
             </div>
             <table>
                 <tr>
@@ -77,14 +81,14 @@ const Lab6 = () => {
                             value={item.labGrade6}
                             onChange={handleChange}/></td>
                         
-                        <td><button onClick={addGrades}>+</button></td>
-                        <td><button onClick={() => handleDelRow(item)}>-</button></td>
+                        <td><button onClick={() => handleDelRow(item)}>X</button></td>
                     </tr>
 
                     
 
                 ))}
             </table>
+            <button onClick={addGrades}>+ Add New Course Item</button>
 
             <Route path="/course6" component={Course6}></Route>
         </div>

@@ -10,7 +10,6 @@ const Course3 = () => {
             currGrade3: '',
             desiredGrades3: '',
             avrGrade3: '',
-            lab3: ''
         }],
         grades3: [{
             id: 1,
@@ -23,6 +22,8 @@ const Course3 = () => {
 
     const [values, setValues] = useState(initial_state.form3);
     const[datas, setDatas] = useState(initial_state.grades3);
+    const[form, setForm] = useState(false);
+    const[checked, setChecked] = useState(false);
 
     const handleOnChangeGrades = event => {
        
@@ -41,6 +42,11 @@ const Course3 = () => {
         tempValues[event.target.name] = event.target.value;
 
         setValues(tempValues);
+    }
+
+    const handleChecked = () => {
+        setChecked(!checked);
+        console.log(checked);
     }
 
     const addGrades = () =>  {
@@ -65,10 +71,16 @@ const Course3 = () => {
     };
 
     const handleOnSubmit = (event) => {
-        event.preventDefualt();
+        event.preventDefault();
+        setForm(!form);
+        
+        console.log(values);
        
     };
 
+    const showForm = () => {
+        setForm(!form);
+    };
   
 
     return (
@@ -76,38 +88,47 @@ const Course3 = () => {
             <Navbar />
 
             <h1>Course</h1>
-            <form onSubmit={handleOnSubmit}>
-                <label>Current Grade: </label>
-                <input 
-                    type = "number"
-                    name ="currGrade3"
-                    value={values.currGrade3}
-                    placeholder="Enter your current grade"
-                    onChange={handleOnChangeForm}/>
 
-                <label>Desired Grade: </label>
-                <input 
-                    type = "number"
-                    name ="desiredGrade3"
-                    value={values.desiredGrades3}
-                    placeholder="Enter your desired grade"
-                    onChange={handleOnChangeForm}/>
-                
-                <label>Is there a lab?</label>
-                <select value={values.lab3} onChange={handleOnChangeForm}  >
-                    <option value="yes">Yes</option>
-                    <option  value="no">No</option>
-                </select>
-
-                <button type="submit">Submit</button>
-            </form>
-
+            <button onClick={showForm}>Click here to enter grade information</button>
             
+            {(form) ? 
+                <div className="course-form">
+                    <form onSubmit={handleOnSubmit}>
+                        <label>Current Grade: </label>
+                        <input 
+                            type = "number"
+                            name ="currGrade3"
+                            value={values.currGrade3}
+                            placeholder="Enter your current grade"
+                            onChange={handleOnChangeForm}/>
 
-            <label>Average Grade Needed on Remaining Items:  </label>
-            <p>Here is where the remainig grades calculated will go</p>
+                        <label>Desired Grade: </label>
+                        <input 
+                            type = "number"
+                            name ="desiredGrade3"
+                            value={values.desiredGrades3}
+                            placeholder="Enter your desired grade"
+                            onChange={handleOnChangeForm}/>
+                        
+                        <label>Is there a lab?</label>
+                        <select value={values.lab3} onChange={handleOnChangeForm}  >
+                            <option value="yes">Yes</option>
+                            <option  value="no">No</option>
+                        </select>
 
-            <Link to='/lab3'><button>Lab</button></Link>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            :null}
+            <br />
+            <br />
+
+            {(checked) ? <Link to="/lab3"><button>Lab</button></Link>:null}
+
+            <div className="grade-remaining">
+                <label>Average Grade Needed on Remaining Items:  </label>
+                <p>Here is where the remainig grades calculated will go</p>
+            </div>
 
             <table>
                 <tr>
@@ -116,7 +137,7 @@ const Course3 = () => {
                     <th>Due in</th>
                     <th>Weight (%)</th>
                     <th>Grade (%)</th>
-                    <td><button onClick={addGrades}>+</button></td>
+                    
                 </tr>
                 {datas.map((item, index) => (
                     <tr key={index}>
@@ -134,7 +155,7 @@ const Course3 = () => {
                             value={item.dueDate3}
                             onChange={handleOnChangeGrades}/>
                         </td>
-                        <td><p>here is where the countdown till the due date will go</p></td>
+                        <td><p></p></td>
                         <td><input 
                             name="weight3"
                             data-id={index}
@@ -149,11 +170,11 @@ const Course3 = () => {
                             value={item.actualGrade3}
                             onChange={handleOnChangeGrades}/>
                         </td>
-                        <td><button onClick={addGrades}>+</button></td>
-                        <td><button onClick={() => handleDelRow(item)}>-</button></td>
+                        <td><button onClick={() => handleDelRow(item)}>X</button></td>
                     </tr>
                 ))}
             </table>
+            <button onClick={addGrades}>+ Add New Course Item</button>
 
             <Route path='/lab3' component={Lab3}></Route>
         </div>

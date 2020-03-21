@@ -4,6 +4,8 @@ import { Link, withRouter, useHistory} from 'react-router-dom';
 import {useFormik, yupToFormErrors} from "formik";
 import * as Yup from "yup";
 import "../styles.css";
+import "../index.css";
+import UofR from "../uofrlogo.png";
 
 const LoginForm = () => {
 
@@ -28,6 +30,7 @@ const LoginForm = () => {
 
     return (
         <div className="formCentre">
+            <img src={UofR} alt="UofR" />
             <h3>Login</h3>
             <form onSubmit={datas.handleSubmit} className="form_Fields">
                 <div className="form_Div">
