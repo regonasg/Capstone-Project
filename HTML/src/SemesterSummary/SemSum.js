@@ -53,25 +53,12 @@ const SemSum = () => {
                         <th>Course</th>
                         <th>Course Average</th>
                     </tr>
-                    {datas.map((item, index) => (
-                        <tr key={index}>
-                            <td><input
-                                    name="name"
-                                    data-id={index}
-                                    type="text"
-                                    value={item.name}
-                                    onChange={handleDatasChange}/>
-                            </td>
-                            <td><input
-                                    name="grade"
-                                    data-id={index}
-                                    type="number"
-                                    value={item.grade}
-                                    onChange={handleDatasChange}/>
-                            </td>
-                            <input type="button" onClick={() => handleRowDel(item)} value="X" className="del-btn" />
+                    <tr>
+                        <td value={datas.name}  >
+                        </td>
+                        <td value={datas.grade} >
+                        </td>
                         </tr>
-                    ))}
                 </table>
               
             </div>

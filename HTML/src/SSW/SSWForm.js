@@ -21,16 +21,10 @@ const SSWForm = () => {
 
     const datas = useFormik({
         initialValues: {
-            cgrade: "", 
-            dgrade: 80.0, 
-            agrade: 0, 
-            pgrade:0,
+            dgrade: '', 
         },
         validationSchema: Yup.object({
-            cgrade: Yup.number().required('Enter your current grade'),
             dgrade:Yup.number().required('Enter your desired grade'),
-            agrade: Yup.number().required('Enter your average grade'),
-            pgrade:Yup.number().required('Enter your percentage'),
         }),
         onSubmit: values => {
             console.log(JSON.stringify(values, null, 2));
@@ -40,20 +34,6 @@ const SSWForm = () => {
     return (
         <div className="sswForm-container">
             <form onSubmit={datas.handleSubmit}>
-                <label>Current Grade</label>
-                <input
-                    id="cgrade"
-                    name="cgrade"
-                    type="number"
-                    onChange={datas.handleChange}
-                    onBlur={datas.handleBlur}
-                    value={datas.values.cgrade}
-                    autoComplete="off"
-                />
-                {datas.touched.cgrade && datas.errors.cgrade ? (
-                        <div className="errMsg">{datas.errors.cgrade}</div>
-                    ) : null}
-                
                 <label>Desired Grade</label>
                 <input
                     id="dgrade"
@@ -67,34 +47,7 @@ const SSWForm = () => {
                 {datas.touched.dgrade && datas.errors.dgrade ? (
                         <div className="errMsg">{datas.errors.dgrade}</div>
                     ) : null}
-
-                <label>Average Grade</label>
-                <input
-                    id="agrade"
-                    name="agrade"
-                    type="number"
-                    onChange={datas.handleChange}
-                    onBlur={datas.handleBlur}
-                    value={datas.values.agrade}
-                    autoComplete="off"
-                />
-                {datas.touched.agrade && datas.errors.agrade ? (
-                        <div className="errMsg">{datas.errors.agrade}</div>
-                    ) : null}
-
-                <label>Percentage Grade</label>
-                <input
-                    id="pgrade"
-                    name="pgrade"
-                    type="number"
-                    onChange={datas.handleChange}
-                    onBlur={datas.handleBlur}
-                    value={datas.values.pgrade}
-                    autoComplete="off"
-                />
-                {datas.touched.pgrade && datas.errors.pgrade ? (
-                        <div className="errMsg">{datas.errors.pgrade}</div>
-                    ) : null}
+                <button type = 'submit'>Submit</button>
             </form>
         </div>
     )

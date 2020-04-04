@@ -83,6 +83,9 @@ const Course6 = () => {
         setForm(!form);
     };
 
+    const submitSave = event =>{
+        event.preventDefault();
+    }
   
 
     return (
@@ -96,14 +99,6 @@ const Course6 = () => {
             {(form) ? 
                 <div className="course-form">
                     <form onSubmit={handleOnSubmit}>
-                        <label>Current Grade: </label>
-                        <input 
-                            type = "number"
-                            name ="currGrade6"
-                            value={values.currGrade6}
-                            placeholder="Enter your current grade"
-                            onChange={handleOnChangeForm}/>
-
                         <label>Desired Grade: </label>
                         <input 
                             type = "number"
@@ -124,9 +119,10 @@ const Course6 = () => {
 
             {(checked) ? <Link to="/lab6"><button>Lab</button></Link>:null}
 
+            <form onSubmit = {submitSave}>
             <div className="grade-remaining">
-                <label>Average Grade Needed on Remaining Items:  </label>
-                <p>Here is where the remaining grades calculated will go</p>
+                <label>Current Grades:  </label>
+                <p>Here is where the current grades calculated will go</p>
             </div>
 
             <table>
@@ -142,7 +138,7 @@ const Course6 = () => {
                         <td><input 
                             name="courseItem6"
                             data-id={index}
-                            type="number"
+                            type="text"
                             value={item.courseItem6}
                             onChange={handleOnChangeGrades}/>
                         </td>
@@ -173,6 +169,8 @@ const Course6 = () => {
                 ))}
             </table>
             <button onClick={addGrades}>+ Add New Course Item</button>
+            <button type = 'submit' className = 'savebtn'>Save</button>
+            </form>
         </div>
     )
 

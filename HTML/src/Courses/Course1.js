@@ -95,6 +95,9 @@ const Course1 = (props) => {
         setForm(!form);
     };
   
+    const submitSave = event => {
+        event.preventDefault();
+    }
 
     return (
         <div>
@@ -106,14 +109,6 @@ const Course1 = (props) => {
             {(form) ? 
                 <div className="course-form">
                  <form onSubmit={handleOnSubmit}>
-                <label>Current Grade: </label>
-                <input 
-                    type = "number"
-                    name ="currGrade1"
-                    value={values.currGrade1}
-                    placeholder="Enter your current grade"
-                    onChange={handleOnChangeForm}/>
-
                 <label>Desired Grade: </label>
                 <input 
                     type = "number"
@@ -134,6 +129,7 @@ const Course1 = (props) => {
 
             {(checked) ? <Link to="/lab1"><button>Lab</button></Link>:null}
 
+            <form onSubmit = {submitSave}>
             <div className="grade-remaining">
                 <label>Average Grade Needed on Remaining Items:  </label>
                 <p>Here is where the remainig grades calculated will go</p>
@@ -155,7 +151,7 @@ const Course1 = (props) => {
                         <td><input 
                             name="courseItem1"
                             data-id={index}
-                            type="number"
+                            type="text"
                             value={item.courseItem1}
                             onChange={handleOnChangeGrades}/>
                         </td>
@@ -188,7 +184,10 @@ const Course1 = (props) => {
             </table>
 
             <Route path="/lab1" component={Lab1}></Route>
+            <button type = 'submit' className = 'savebtn'>Save</button>
+            </form>
         </div>
+        
     )
 
 }

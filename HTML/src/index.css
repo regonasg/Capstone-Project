@@ -44,6 +44,12 @@ textarea {
   height: 70px;
 }
 
+.savebtn {
+  align-content: center;
+  margin-top: 40px;
+  width: 100%;
+}
+
 /* CSS for Signup and Login */
 .formCentre {
   width: 500px;
@@ -157,7 +163,8 @@ h1 {
   margin-right:20%;
 }
 
-.ssw-row, .ugpa-row, {
+.ssw-row, .ugpa-row
+{
   display: flex;
   justify-content: space-around;
   flex-direction: row;
@@ -255,7 +262,6 @@ h4 {
 
 .academic-plan select {
   padding: 10px;
-  margin-left: 50px;
 }
 
 .academic-plan th, .academic_plan td {

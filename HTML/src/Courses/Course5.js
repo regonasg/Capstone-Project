@@ -82,6 +82,10 @@ const Course5 = () => {
         setForm(!form);
     };
 
+    const submitSave = event => {
+        event.preventDefault();
+    }
+
   
 
     return (
@@ -95,14 +99,6 @@ const Course5 = () => {
             {(form) ? 
                 <div className="course-form">
                     <form onSubmit={handleOnSubmit}>
-                        <label>Current Grade: </label>
-                        <input 
-                            type = "number"
-                            name ="currGrade5"
-                            value={values.currGrade5}
-                            placeholder="Enter your current grade"
-                            onChange={handleOnChangeForm}/>
-
                         <label>Desired Grade: </label>
                         <input 
                             type = "number"
@@ -122,57 +118,59 @@ const Course5 = () => {
             <br />
 
             {(checked) ? <Link to="/lab1"><button>Lab</button></Link>:null}
+            <form onSubmit={submitSave}>
+                <div className="grade-remaining">
+                    <label>Current Grade:  </label>
+                    <p>Here is where the current grades calculated will go</p>
+                </div>
 
-            <div className="grade-remaining">
-                <label>Average Grade Needed on Remaining Items:  </label>
-                <p>Here is where the remaining grades calculated will go</p>
-            </div>
-
-            <table>
-                <tr>
-                    <th>Course Item</th>
-                    <th>Due Date</th>
-                    <th>Due in</th>
-                    <th>Weight (%)</th>
-                    <th>Grade (%)</th>
-                </tr>
-                {datas.map((item, index) => (
-                    <tr key={index}>
-                        <td><input 
-                            name="courseItem5"
-                            data-id={index}
-                            type="number"
-                            value={item.courseItem5}
-                            onChange={handleOnChangeGrades}/>
-                        </td>
-                        <td><input 
-                            name="dueDate5"
-                            data-id={index}
-                            type="date"
-                            value={item.dueDate5}
-                            onChange={handleOnChangeGrades}/>
-                        </td>
-                        <td><p></p></td>
-                        <td><input 
-                            name="weight5"
-                            data-id={index}
-                            type="number"
-                            value={item.weight5}
-                            onChange={handleOnChangeGrades}/>
-                        </td>
-                        <td><input 
-                            name="actualGrade5"
-                            data-id={index}
-                            type="number"
-                            value={item.actualGrade5}
-                            onChange={handleOnChangeGrades}/>
-                        </td>
-                        
-                        <td><button onClick={() => handleDelRow(item)}>X</button></td>
+                <table>
+                    <tr>
+                        <th>Course Item</th>
+                        <th>Due Date</th>
+                        <th>Due in</th>
+                        <th>Weight (%)</th>
+                        <th>Grade (%)</th>
                     </tr>
-                ))}
-            </table>
-            <button onClick={addGrades}>+ Add New Course Item</button>
+                    {datas.map((item, index) => (
+                        <tr key={index}>
+                            <td><input 
+                                name="courseItem5"
+                                data-id={index}
+                                type="text"
+                                value={item.courseItem5}
+                                onChange={handleOnChangeGrades}/>
+                            </td>
+                            <td><input 
+                                name="dueDate5"
+                                data-id={index}
+                                type="date"
+                                value={item.dueDate5}
+                                onChange={handleOnChangeGrades}/>
+                            </td>
+                            <td><p></p></td>
+                            <td><input 
+                                name="weight5"
+                                data-id={index}
+                                type="number"
+                                value={item.weight5}
+                                onChange={handleOnChangeGrades}/>
+                            </td>
+                            <td><input 
+                                name="actualGrade5"
+                                data-id={index}
+                                type="number"
+                                value={item.actualGrade5}
+                                onChange={handleOnChangeGrades}/>
+                            </td>
+                            
+                            <td><button onClick={() => handleDelRow(item)}>X</button></td>
+                        </tr>
+                    ))}
+                </table>
+                <button onClick={addGrades}>+ Add New Course Item</button>
+                <button type = 'submit' className = 'savebtn'>Save</button>
+            </form>
         </div>
     )
 

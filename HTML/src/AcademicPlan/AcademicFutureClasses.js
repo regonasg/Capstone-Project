@@ -63,7 +63,6 @@ const AcademicFutureClasses = () => {
                 <th>Can you use this course for your program?</th>
                 <th>Is this course a MAJOR requirement</th>
                 <th>Desired Grade</th>
-                <td><button onClick={addClass}>+</button></td>
                 <th></th>
             </tr>
             {datas.map((item,index) => (
@@ -133,11 +132,11 @@ const AcademicFutureClasses = () => {
                         value={item.tgrade}
                         onChange={handleChange}/>
                     </td>
-                    <td><button onClick={addClass}>+</button></td>
                     <td><button onClick={() => handleDelRow(item)}>-</button></td>
                 </tr>
             ))}
         </table>
+        <button onClick={addClass}>+ Add Future Classes</button>
         </div>
     )
 };

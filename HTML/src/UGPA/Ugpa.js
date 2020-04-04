@@ -4,7 +4,7 @@ import Ugpa2 from "./Ugpa2";
 import Navbar from "../Navbar"
 const Ugpa = () => {
     const initial_state = [
-        { id: 1, name: "SSW ACT", grade: 0 }
+        { id: 1, name: "", grade: 0 }
 
     ];
     const [datas, setDatas] = useState(initial_state);

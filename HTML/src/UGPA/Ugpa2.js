@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 const Ugpa2 = () => {
     const initial_state = [
-        { id: 1, name: "SSW ACT", grade: 0 }
+        { id: 1, name: "", grade: 0 }
 
     ];
     const [datas, setDatas] = useState(initial_state);

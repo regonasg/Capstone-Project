@@ -14,6 +14,10 @@ const SSW = props => {
         setForm(!form);
     }
 
+    const onSubmit = event => {
+        
+    }
+
     
    
 
@@ -31,11 +35,14 @@ const SSW = props => {
                 <button onClick={showForm}>Close</button>
                 </div>
             :null}
+            <form onSubmit = {onSubmit}>
             <div className = "ssw-row">
                 <SSWTable />
             </div>
 
             <BookClub />
+            <button type = 'submit' className = 'savebtn'>Save</button>
+            </form>
         </div>
 
 

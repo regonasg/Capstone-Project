@@ -61,7 +61,6 @@ const AcademicClassTaken = () => {
                 <th>Can you use this course for your program?</th>
                 <th>Is this course a MAJOR requirement</th>
                 <th>Grade or T (transfer credit)</th>
-                <td><button onClick={addClass}>+</button></td>
                 <th></th>
             </tr>
             {datas.map((item,index) => (
@@ -132,11 +131,11 @@ const AcademicClassTaken = () => {
                         value={item.tgrade}
                         onChange={handleChange}/>
                     </td>
-                    <td><button onClick={addClass}>+</button></td>
                     <td><button onClick={() => handleDelRow(item)}>-</button></td>
                 </tr>
             ))}
         </table>
+        <button onClick={addClass}>+ Add Classes Taken</button>
         </div>
     )
 };
