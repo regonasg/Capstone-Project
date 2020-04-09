@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link rel="stylesheet" href="design.css">
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Signika&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="header.css">
+      <link rel="stylesheet" href="style.css">
+    <script type="text/javascript">
+      function toggleSidebar(){
+         document.getElementById("sidebar").classList.toggle('active');
+      }
+    </script>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <nav>
+        <div class="logo">
+          <img src="capstone(1).png" alt ="logo" height= 50px;>
+        </div>
+      <ul class = "nav-links">
+        <li>
+          <a style = "font-size: 25px " href="home.html"><i class = "fa fa-home"></i></a>
+        </li>
+        <li>
+          <a style = "font-size: 25px " href="instruction.html"><i class = "fa fa-question-circle"></i></a>
+        </li>
+        <li>
+          <a href="login.html">Logout</a>
+        </li>
+        <div class="burger" onclick="toggleSidebar()">
+          <a><div></div>
+          <div></div>
+          <div></div></a>
+        </div>
+        </ul>
+        <div id="sidebar">
+          <ul class = menu>
+            <li><a href="">SSW ACT</a></li>
+            <li><a href="course1.html">Course 1</a></li>
+            <li><a href="course2.html">Course 2</a></li>
+            <li><a href="course3.html">Course 3</a></li>
+            <li><a href="course4.html">Course 4</a></li>
+            <li><a href="course5.html">Course 5</a></li>
+            <li><a href="course6.html">Course 6</a></li>
+            <li><a href="">Semester Summary</a></li>
+            <li><a href="">Learning</a></li>
+          </ul>
+        </div>
+    </nav>
+    <header>
+      <h1>Lab 1</h1>
+    </header>
+
+    <div class = "coursebtn">
+      <button  type="button" name="button">
+        <a href="course1.html">Back to Course</a>
+      </button>
+    </div>
+    <div class="row">
+      <form class="labs" action="" method="get">
+        <label for="">Current Lab Grade: </label>
+        <br><br>
+        <table>
+          <tr>
+            <th>Lab Assignment</th>
+            <th>Weight (%)</th>
+            <th>Grade (%)</th>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </body>
+</html>

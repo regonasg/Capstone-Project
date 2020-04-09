@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Signika&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="header.css">
+      <link rel="stylesheet" href="style.css">
+    <script type="text/javascript">
+      function toggleSidebar(){
+         document.getElementById("sidebar").classList.toggle('active');
+      }
+    </script>
+    <title>Academic Plan</title>
+  </head>
+  <body id = "planner-body">
+    <nav>
+      <div class="logo">
+        <i class = "fa fa-calculator"></i>
+        Caltor
+      </div>
+      <ul class = "nav-links">
+        <li>
+          <a style = "font-size: 25px " href="#"><i class = "fa fa-home"></i></a>
+        </li>
+        <li>
+          <a style = "font-size: 25px " href="#"><i class = "fa fa-question-circle"></i></a>
+        </li>
+        <li>
+          <a href="#">Logout</a>
+        </li>
+        <div class="burger" onclick="toggleSidebar()">
+          <a><div></div>
+          <div></div>
+          <div></div></a>
+        </div>
+        </ul>
+        <div id="sidebar">
+          <ul class = menu>
+            <li><a href="">SSW ACT</a></li>
+            <li><a href="">Course 1</a></li>
+            <li><a href="">Course 2</a></li>
+            <li><a href="">Course 3</a></li>
+            <li><a href="">Course 4</a></li>
+            <li><a href="">Course 5</a></li>
+            <li><a href="">Course 6</a></li>
+            <li><a href="">Semester Summary</a></li>
+            <li><a href="">Learning</a></li>
+          </ul>
+        </div>
+    </nav>
+    <header>
+      <h1>Academic Plan</h1>
+    </header>
+    <div class="student-info">
+      <form class="info-form" action="" method="post">
+        <div class="info-label">
+          <label for="">Name:</label>
+          <label for="">Degree: </label>
+          <label for="">Minor (if applicable):</label>
+          <label for="">PGPA Required: </label>
+          <label for="">Total credit hours needed:</label>
+        </div>
+        <div class="input-info">
+          <input type="text" name="name" value="" >
+          <input type="text" name="degree" value="">
+          <input type="text" name="minor" value="">
+          <input type="text" name="pgpa" value="">
+          <input type="text" name="hours" value="">
+        </div>
+        <div class="info">
+          <label for="">	School and Community Organizations/Clubs/Event I will partigicpate in:
+          <br><i>(your program webiste is a good place to look)</i></label>
+          <input style = "line-height: 30px;"type="text" name="clubs" value="">
+          <br><br>
+          <label for="Supports">Supports I will use:
+          <br><i>(E.g., Tutoring, Global Learning Centre)</i> </label>
+          <input style = "line-height: 30px" type="text" name="Supports" value="" id = "Supports" >
+        </div>
+      </form>
+    </div>
+    <p class = "warning">NOTE: Information inside the box does not need to be changed, it will automatically change as information is being added.</p>
+
+    <div class="grades-info">
+      <div class="hours-label">
+        <label for="">Total Hours:
+          <br><i>(this will change as credit hours are entered below)</i></label>
+          <br><br>
+        <label for="">Total credit hours earned: </label>
+      </div>
+      <div class="hours-input"></div>
+      <div class="gpa-label">
+        <label for="">PGPA:</label>
+        <label for="">MGPA:</label>
+        <label for="">UGPA:</label>
+      </div>
+      <div class="gpa-input">
+      </div>
+      <div class="grad-label">
+        <label for="">Expected Graduation: </label>
+      </div>
+      <div class="grad-input"></div>
+    </div>
+
+    <div class="planner">
+      <div class="classes-taken">
+        <h2>Courses already taken:</h2>
+        <br>
+        <table>
+          <tr>
+            <th>Credit Hours</th>
+            <th>Course Number</th>
+            <th>Course Name</th>
+            <th>Year</th>
+            <th>Semester Code</th>
+            <th>Credit Earned</th>
+            <th>Can you use this course for your program?</th>
+            <th>Is this course a MAJOR requirement</th>
+            <th>Grade or T (transfer credit)</th>
+          </tr>
+          <tr>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+          </tr>
+          <tr>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+          </tr>
+        </table>
+      </div>
+      <div class="future-classes">
+        <h2>Classes planning to take:</h2>
+        <br>
+        <table>
+          <tr>
+            <th>Credit Hours</th>
+            <th>Course Number</th>
+            <th>Course Name</th>
+            <th>Year</th>
+            <th>Semester Code</th>
+            <th>Credit Earned</th>
+            <th>Can you use this course for your program?</th>
+            <th>Is this course a MAJOR requirement</th>
+            <th>Grade or T (transfer credit)</th>
+          </tr>
+          <tr>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+          </tr>
+          <tr>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

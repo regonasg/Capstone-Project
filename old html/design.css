@@ -1,0 +1,127 @@
+header {
+  text-align: center;
+  padding: 10px;
+  font-size: 30px;
+}
+
+table, th, tr {
+  text-align: left;
+  border-spacing: 0;
+}
+
+p {
+  color:#d21111;
+  text-align: center;
+}
+
+.navbar {
+  float: right;
+  font-size: 20px;
+  padding-right: 250px;
+  padding-top: 20px;
+}
+
+.navbar a {
+  padding-left: 15px;
+  color: #000;
+}
+.navbar a:hover{
+  background-color: #3ddf56;
+}
+
+
+.credits{
+  padding-top: 2px;
+  border-style: outset;
+  border-radius: 8px;
+}
+
+.student-info {
+  width: 100%;
+}
+
+.student-info th, .credits th {
+  padding: 5px;
+}
+
+.planner {
+  padding-top: 20px;
+}
+
+.planner th, .planner td {
+  border: 1px solid #ddd;
+}
+
+.planner th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #004f2e;
+  color: white;
+}
+
+
+/*** Css for Courses pages**/
+
+.grade-info, .grades {
+  float: left;
+  padding: 30px;
+}
+
+.pages {
+  float: right;
+  display: inline;
+}
+
+ul {
+  list-style-type: none;
+  margin:0;
+  padding:0;
+  width: 200px;
+  background-color: #004f2e;
+  height: 100%;
+  border: 1px solid #555;
+}
+
+li a {
+  display: block;
+  color: white;
+  padding: 20px 20px;
+  text-decoration: none;
+  font-size: 20px;
+  border-bottom: 1px solid #555;
+}
+
+/* Change the link color on hover */
+li a:hover {
+  background-color: #ffc82e;
+  color: black;
+}
+
+.labbtn {
+  font-size: 20px;
+  padding: 10px 25px;
+  background-color: #f1f1f1;
+  border-bottom: 1px solid #555;
+  color: #000;
+}
+
+.grades tr, .grades td, .grades th, .labs tr, .labs td, .labs th  {
+  border: 1px solid #ddd;
+  font-size: 21px;
+  width:21%;
+}
+
+
+.grades th, .labs th {
+  background-color: #757373;
+}
+
+.grades tr:nth-child(odd), .labs tr:nth-child(odd){
+  background-color: #f2f2f2;
+}
+
+.labs {
+  padding-left: 200px;
+  padding-top: 20px;
+}
