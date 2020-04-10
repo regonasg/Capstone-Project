@@ -38,3 +38,12 @@ Presentation Links
 * [Week 2 Scrum](Presentations/ENSE%20400%20Scrum/Week2%20Scrum.pdf)
 * [Project Bazaar Day](Presentations/ENSE%20400%20Scrum/project%20bazaar%20day.pdf)
 
+Authors
+-----
+CALTOR TEAM:
+     
+     UMANGI PATEL
+     
+     EARL JEDRICK MACALINO
+ 
+     GLAIZA REGONAS
