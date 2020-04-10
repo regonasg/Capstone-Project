@@ -2,7 +2,7 @@
 ![](Documentation/SHIKSHA_logo.png)
 
 ### Presentation Link:
-* #### [Video](https://youtu.be/UsD4YJ1Hkf4)
+* #### [Video](https://www.youtube.com/watch?v=iKEQNqUx_-c)
 * #### [Presentation Slides](Presentations/Final%20Presentation.pdf)
 
 Shisksha Defination
