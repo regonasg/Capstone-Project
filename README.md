@@ -7,7 +7,7 @@
 
 Shiksha Defination
 ------
-Shisksha is a sanskrit word that means the way of getting knowledge. 
+Shiksha is a sanskrit word that means the way of getting knowledge. 
 
 Description of Project
 ------
