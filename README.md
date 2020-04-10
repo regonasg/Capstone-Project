@@ -5,7 +5,7 @@
 * #### [Video](https://www.youtube.com/watch?v=iKEQNqUx_-c)
 * #### [Presentation Slides](Presentations/Final%20Presentation.pdf)
 
-Shisksha Defination
+Shiksha Defination
 ------
 Shisksha is a sanskrit word that means the way of getting knowledge. 
 
