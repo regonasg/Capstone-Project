@@ -2,7 +2,7 @@
 ![](Documentation/SHIKSHA_logo.png)
 
 ### Presentation Link:
-* #### [Video]()
+* #### [Video](https://youtu.be/UsD4YJ1Hkf4)
 * #### [Presentation Slides](Presentations/Final%20Presentation.pdf)
 
 Shisksha Defination
@@ -17,7 +17,7 @@ ___This project is currently hosted in the localhost, becuase server space was n
 
 Documentation Links
 -----
-* [Poster](https://youtu.be/UsD4YJ1Hkf4)
+* [Poster](Documentation/CAPSTONE_POSTER.pdf)
 * [StoriesOnBoard](Documentation/USM)
 * [ERD Document](Documentation/Diagrams/Logic%20Data%20Model.png)
 * [FRD Document](Documentation/Reports/FRD_Document.pdf)
