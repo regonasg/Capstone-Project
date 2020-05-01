@@ -1,29 +1,26 @@
 import React, { useState } from 'react';
 import Navbar from '../Navbar';
+import moment from 'moment';
 import {Link, Route} from 'react-router-dom';
+import 'font-awesome/css/font-awesome.min.css';
 import Lab1 from '../Labs/Lab1';
 
 
-const Course1 = (props) => {
-    const initial_state = {
-        form1: [{
-            currGrade1: '',
-            desiredGrades1: '',
-            avrGrade1: ''
-        }],
-        grades1: [{
+
+const Course1 = () => {
+    const initial_state = [{
             id: 1,
             courseItem1: '',
-            dueDate1: '',
             weight1: '',
-            actualGrade1: ''
-        }]
-    };
+            actualGrade1: '',
+            dueDate1: '',
+    }];
 
-    const [values, setValues] = useState(initial_state.form1);
-    const[datas, setDatas] = useState(initial_state.grades1);
+    const[dgrade1,setDgrade1] = useState(0);
+    const[datas, setDatas] = useState(initial_state);
     const[form, setForm] = useState(false);
     const[checked, setChecked] = useState(false);
+    const[grade1, setGrade1] = useState(0);
 
     const handleOnChangeGrades = event => {
        
@@ -35,19 +32,19 @@ const Course1 = (props) => {
 
         console.log("onChange is called");
        
+    };
+
+    const handleDGrade = event => {
+        const tempDgrade = event.target.value;
+
+        setDgrade1(tempDgrade);
     }
 
-    const handleOnChangeForm = event => {
-        const tempValues = [values];
-        tempValues[event.target.name] = event.target.value;
-
-        setValues(tempValues);
-    }
 
     const handleChecked = () => {
         setChecked(!checked);
         console.log(checked);
-    }
+    };
 
     const addGrades = () =>  {
         var id = (+ new Date() + Math.floor(Math.random() * 999999)).toString(36);
@@ -59,8 +56,6 @@ const Course1 = (props) => {
                 actualGrade1: ''
         
         }])
-
-
     };
 
     const handleDelRow = (data) => {
@@ -70,79 +65,67 @@ const Course1 = (props) => {
         console.log(tempData);
     };
 
-    const handleOnSubmit = (event) => {
-        event.preventDefault();
-        setForm(!form);
-        
-        console.log(values);
-       
-    };
-
-    const calculateTimeLeft = () => {
-        const difference = +new Date(values.dueDate1) - new Date();
-        let timeLeft = {};
-
-        if(difference > 0) {
-            timeLeft = {
-                days: Math.floor(difference/ (1000 * 60 * 60 * 24))
-            };
-        }
-
-        return timeLeft;
-    }
-
     const showForm = () => {
         setForm(!form);
     };
-  
-    const submitSave = event => {
-        event.preventDefault();
-    }
 
+    //calculates grades 
+    const current_grade = () => {
+        let grades = 0;
+        const rowTotal = datas.map(
+            row => (row.actualGrade1 * (row.weight1/100)) || 0  
+        );
+
+        if(rowTotal.length > 0) {
+            grades = rowTotal.reduce((acc,val) => acc + val);
+        }
+
+        setGrade1(grades);
+        console.log(grades);
+    };
     return (
         <div>
             <Navbar />
 
             <h1>Course</h1>
-            
-            <button onClick={showForm}>Click here to enter grade information</button>
-            {(form) ? 
-                <div className="course-form">
-                 <form onSubmit={handleOnSubmit}>
-                <label>Desired Grade: </label>
-                <input 
-                    type = "number"
-                    name ="desiredGrade1"
-                    value={values.desiredGrades1}
-                    placeholder="Enter your desired grade"
-                    onChange={handleOnChangeForm}/>
-                
-                <label>Is there is Lab?</label>
+
+
+            <button onClick={showForm}>Click here to enter desired grades</button>
+
+            <div>
+                {(form) ? 
+                    <div>
+                        <label>Desired Grades: </label>
+                        <input 
+                            type="number"
+                            value={dgrade1}
+                            onChange={handleDGrade}
+                        />
+                    </div>
+                :null}
+            </div>
+
+            <div>
+                <label>Is there a lab?</label>
                 <input className="checkbox1" type="checkbox" onChange={handleChecked} />
-                <br />
-                <button type="submit">Submit</button>
-                </form>
-                </div>
-            :null}
-            <br />
-            <br />
+            </div>
 
             {(checked) ? <Link to="/lab1"><button>Lab</button></Link>:null}
-
-            <form onSubmit = {submitSave}>
             <div className="grade-remaining">
-                <label>Average Grade Needed on Remaining Items:  </label>
-                <p>Here is where the remainig grades calculated will go</p>
+                <label>Desired Grade:  {dgrade1}</label>
+                <label>Current Grade: {grade1} </label>
+                <label>Average Grade Needed on Remaining Items: {dgrade1 == 0? '': dgrade1 - grade1} </label>
+                <p></p>
             </div>
             
 
             
 
-            <table>
+            <table className='course-table'>
                 <tr>
                     <th>Course Item</th>
                     <th>Due Date</th>
-                    <th>Due in</th>
+                    <th>Due in </th>
                     <th>Weight (%)</th>
                     <th>Grade (%)</th>
                 </tr>
@@ -162,7 +145,9 @@ const Course1 = (props) => {
                             value={item.dueDate1}
                             onChange={handleOnChangeGrades}/>
                         </td>
-                        <td><p>{calculateTimeLeft}</p></td>
+                        <td>
+                            {moment(item.dueDate1).diff(moment().format('YYYY MMMM DD'), 'days' ) || 0} days
+                        </td>
                         <td><input 
                             name="weight1"
                             data-id={index}
@@ -177,6 +162,7 @@ const Course1 = (props) => {
                             value={item.actualGrade1}
                             onChange={handleOnChangeGrades}/>
                         </td>
+                        <td><button onClick={current_grade}><i class="fa fa-check"></i></button></td>
                         <td><button onClick={() => handleDelRow(item)}>X</button></td>
                     </tr>
                 ))}
@@ -184,8 +170,6 @@ const Course1 = (props) => {
             </table>
 
             <Route path="/lab1" component={Lab1}></Route>
-            <button type = 'submit' className = 'savebtn'>Save</button>
-            </form>
         </div>
         
     )

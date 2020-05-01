@@ -1,30 +1,26 @@
 import React, { useState } from 'react';
 import Navbar from '../Navbar';
+import moment from 'moment';
 import {Link, Route} from 'react-router-dom';
+import 'font-awesome/css/font-awesome.min.css';
 import Lab2 from '../Labs/Lab2';
-import Lab1 from '../Labs/Lab1';
+
 
 
 const Course2 = () => {
-    const initial_state = {
-        form2: [{
-            currGrade2: '',
-            desiredGrades2: '',
-            avrGrade2: ''
-        }],
-        grades2: [{
+    const initial_state = [{
             id: 1,
             courseItem2: '',
-            dueDate2: '',
             weight2: '',
-            actualGrade2: ''
-        }]
-    };
+            actualGrade2: '',
+            dueDate2: '',
+    }];
 
-    const [values, setValues] = useState(initial_state.form2);
-    const[datas, setDatas] = useState(initial_state.grades2);
+    const[dgrade2,setDgrade2] = useState(0);
+    const[datas, setDatas] = useState(initial_state);
     const[form, setForm] = useState(false);
     const[checked, setChecked] = useState(false);
+    const[grade2, setGrade2] = useState(0);
 
     const handleOnChangeGrades = event => {
        
@@ -36,19 +32,19 @@ const Course2 = () => {
 
         console.log("onChange is called");
        
+    };
+
+    const handleDGrade = event => {
+        const tempDgrade = event.target.value;
+
+        setDgrade2(tempDgrade);
     }
 
-    const handleOnChangeForm = event => {
-        const tempValues = [values];
-        tempValues[event.target.name] = event.target.value;
-
-        setValues(tempValues);
-    }
 
     const handleChecked = () => {
         setChecked(!checked);
         console.log(checked);
-    }
+    };
 
     const addGrades = () =>  {
         var id = (+ new Date() + Math.floor(Math.random() * 999999)).toString(36);
@@ -60,8 +56,6 @@ const Course2 = () => {
                 actualGrade2: ''
         
         }])
-
-
     };
 
     const handleDelRow = (data) => {
@@ -71,67 +65,67 @@ const Course2 = () => {
         console.log(tempData);
     };
 
-    const handleOnSubmit = (event) => {
-        event.preventDefault();
-        setForm(!form);
-        
-        console.log(values);
-       
-    };
-
     const showForm = () => {
         setForm(!form);
     };
 
-    const submitSave = event => {
-        event.preventDefault();
-    }
-  
+    //calculates grades 
+    const current_grade = () => {
+        let grades = 0;
+        const rowTotal = datas.map(
+            row => (row.actualGrade2 * (row.weight2/100)) || 0  
+        );
 
+        if(rowTotal.length > 0) {
+            grades = rowTotal.reduce((acc,val) => acc + val);
+        }
+
+        setGrade2(grades);
+        console.log(grades);
+    };
     return (
         <div>
             <Navbar />
 
             <h1>Course</h1>
 
-            <button onClick={showForm}>Click here to enter grade information</button>
-            {(form) ? 
-                <div className="course-form">
-                    <form onSubmit={handleOnSubmit}>
 
-                        <label>Desired Grade: </label>
+            <button onClick={showForm}>Click here to enter desired grades</button>
+
+            <div>
+                {(form) ? 
+                    <div>
+                        <label>Desired Grades: </label>
                         <input 
-                            type = "number"
-                            name ="desiredGrade2"
-                            value={values.desiredGrades2}
-                            placeholder="Enter your desired grade"
-                            onChange={handleOnChangeForm}/>
-                    
-                        <label>Is there a lab?</label>
-                        <input className="checkbox1" type="checkbox" onChange={handleChecked} />
-                        <br />
-
-                        <button type="submit">Submit</button>
-                    </form>
-                </div>
-            :null}
-
-            <br />
-            <br />
-            {(checked) ? <Link to="/lab2"><button>Lab</button></Link>:null}
-
-            <form onSubmit = {submitSave}>
-            <div className="grade-remaining">
-                <label>Current Grade:  </label>
-                <p>Here is where the current grades calculated will go</p>
+                            type="number"
+                            value={dgrade2}
+                            onChange={handleDGrade}
+                        />
+                    </div>
+                :null}
             </div>
 
+            <div>
+                <label>Is there a lab?</label>
+                <input className="checkbox1" type="checkbox" onChange={handleChecked} />
+            </div>
 
-            <table>
+            {(checked) ? <Link to="/lab1"><button>Lab</button></Link>:null}
+            <div className="grade-remaining">
+                <label>Desired Grade:  {dgrade2}</label>
+                <label>Current Grade: {grade2} </label>
+                <label>Average Grade Needed on Remaining Items: {dgrade2 == 0? '': dgrade2 - grade2} </label>
+                <p></p>
+            </div>
+            
+
+            
+
+            <table className='course-table'>
                 <tr>
                     <th>Course Item</th>
                     <th>Due Date</th>
-                    <th>Due in</th>
+                    <th>Due in </th>
                     <th>Weight (%)</th>
                     <th>Grade (%)</th>
                 </tr>
@@ -151,7 +145,9 @@ const Course2 = () => {
                             value={item.dueDate2}
                             onChange={handleOnChangeGrades}/>
                         </td>
-                        <td><p></p></td>
+                        <td>
+                            {moment(item.dueDate2).diff(moment().format('YYYY MMMM DD'), 'days' ) || 0} days
+                        </td>
                         <td><input 
                             name="weight2"
                             data-id={index}
@@ -166,19 +162,18 @@ const Course2 = () => {
                             value={item.actualGrade2}
                             onChange={handleOnChangeGrades}/>
                         </td>
+                        <td><button onClick={current_grade}><i class="fa fa-check"></i></button></td>
                         <td><button onClick={() => handleDelRow(item)}>X</button></td>
                     </tr>
                 ))}
-
                 <button onClick={addGrades}>+ Add New Course Item</button>
             </table>
 
             <Route path="/lab2" component={Lab2}></Route>
-            <button type = 'submit' className = 'savebtn'>Save</button>
-            </form>
         </div>
+        
     )
 
 }
 
-export default Course2
+export default Course2;

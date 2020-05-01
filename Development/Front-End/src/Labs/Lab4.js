@@ -12,6 +12,7 @@ const Lab4 = () => {
     }];
 
     const [datas, setDatas] = useState(initial_state);
+    const[labGrade4, setlabGrade4] = useState(0);
 
     //Makes sure that data being inputed is actually showing up
     const handleChange = (event) => {
@@ -38,6 +39,20 @@ const Lab4 = () => {
         setDatas(tempData);
     };
 
+    const current_lab = () => {
+        let labGrades = 0;
+        const rowTotal = datas.map(
+            row => (row.labGrade4 * (row.labWeight4/100)) || 0  
+        );
+
+        if(rowTotal.length > 0) {
+            labGrades = rowTotal.reduce((acc,val) => acc + val);
+        }
+
+        setlabGrade4(labGrades);
+        console.log(labGrades);
+    }
+
   
 
     return (
@@ -48,12 +63,11 @@ const Lab4 = () => {
             <div className="currentGrade">
             
             <div className="grade-remaining">
-            <label>Current Lab Grades: </label>
-                <p>This is where the current lab grade will go</p>
+                <label>Current Lab Grades: {labGrade4}</label>
             </div>
 
             </div>
-            <table>
+            <table className='course-table'>
                 <tr>
                     <th>Lab Assignment</th>
                     <th>Weight (%)</th>
@@ -81,7 +95,7 @@ const Lab4 = () => {
                             value={item.labGrade4}
                             onChange={handleChange}/></td>
                         
-                        
+                        <td><button onClick={current_lab}><i class="fa fa-check"></i></button></td>
                         <td><button onClick={() => handleDelRow(item)}>X</button></td>
                     </tr>
 

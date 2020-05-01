@@ -1,6 +1,7 @@
 // JavaScript source code
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import moment from 'moment';
 
 
 
@@ -14,6 +15,9 @@ const SSWTable = () => {
 
     ];
     const [datas, setDatas] = useState(initial_state);
+    const[form, setForm] = useState(false);
+    const[dgrade,setDgrade] = useState('');
+    const[currGrade, setcurrGrade] = useState(0);
     useEffect(() => {
         console.log('Component did mount');
         axios.get('http://localhost:8000/react/phps/list.php')
@@ -88,11 +92,51 @@ const SSWTable = () => {
         let tempData = datas.filter(item => item.id !== data.id);
         setDatas(tempData);
     };
-    
+
+    const showForm = () => {
+        setForm(!form);
+    };
+
+    const handleDGrade = event => {
+        const tempDgrade = event.target.value;
+
+        setDgrade(tempDgrade);
+    }
+
+    const current_grade = () => {
+        let grades = 0;
+        const rowTotal = datas.map(
+            row => (row.receivedGrade / (row.totalGrade)) || 0  
+        );
+
+        if(rowTotal.length > 0) {
+            grades = rowTotal.reduce((acc,val) => acc + val);
+        }
+
+        setcurrGrade(grades);
+        console.log(grades);
+    };
 
     return (
         <div className="ssw-table">
-            <h4>Current Grade: </h4>
+            <button onClick={showForm}>Click here to enter desired grades</button>
+
+            <div>
+                {(form) ? 
+                    <div>
+                        <label>Desired Grades: </label>
+                        <input 
+                            type="number"
+                            value={dgrade}
+                            onChange={handleDGrade}
+                        />
+                    </div>
+                :null}
+            </div>
+                
+            <h5>Desired Grade: {dgrade}</h5>
+            <h5>Current Grade: {currGrade}</h5>
+            
 
             <button className="ssw-button" onClick={addNewData}>Add Item</button>
             
@@ -118,16 +162,12 @@ const SSWTable = () => {
                         <td><input
                             name="dueDate"
                             data-id={index}
-                            type="text"
+                            type="date"
                             value={item.dueDate}
                             onChange={(event) => handleDatasChange(event, item)}/>
                         </td>
-                        <td> <input
-                            name="dueIn"
-                            data-id={index}
-                            type="text"
-                            value={item.dueIn}
-                            onChange={(event) => handleDatasChange(event, item)}/>
+                        <td>    
+                            {moment(item.dueDate).diff(moment().format('YYYY MMMM DD'), 'days' ) || 0} days
                         </td>
                         <td><input
                             name="totalGrade"
@@ -150,6 +190,7 @@ const SSWTable = () => {
                             value={item.notes}
                             onChange={(event) => handleDatasChange(event, item)}/>
                         </td>
+                        <td><button onClick={current_grade}><i class="fa fa-check"></i></button></td>
                         <td> <input type="button" onClick={() => handleRowDel(item)} value="X" className="del-btn" /></td>
                     </tr>
     

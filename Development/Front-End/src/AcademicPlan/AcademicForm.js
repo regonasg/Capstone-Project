@@ -4,6 +4,7 @@ import {useHistory, withRouter} from "react-router-dom";
 import {useFormik} from "formik";
 import * as Yup from "yup";
 import "../styles.css";
+import "../index.css";
 
 
 const AcademicForm = () => {
@@ -124,6 +125,7 @@ const AcademicForm = () => {
                         id="clubs"
                         name="clubs"
                         type="text"
+                        className='textarea'
                         onChange={datas.handleChange}
                         onBlur={datas.handleBlur}
                         value={datas.values.clubs}
@@ -141,6 +143,7 @@ const AcademicForm = () => {
                         id="supports"
                         name="supports"
                         type="text"
+                        className='textarea'
                         onChange={datas.handleChange}
                         onBlur={datas.handleBlur}
                         value={datas.values.supports}

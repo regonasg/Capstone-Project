@@ -15,7 +15,14 @@ export class AddCourses extends Component {
             className5: '',
             className6: '',
             showForm: false,
-            showButton: false
+            showButton: false,
+            errors: {
+                className1: '',
+                className2: '',
+                className3: '',
+                className4: '',
+                className5: '',
+                className6: '',}
         };
 
        this.buttonClicked = this.buttonClicked.bind(this)
@@ -39,13 +46,27 @@ export class AddCourses extends Component {
     }
 
     handleChange(event) {
+        //getting keyboard input
         let target = event.target;
         let value = target.type === 'checkbox' ? target.checked : target.value;
         let name = target.name;
+        
 
         this.setState({
-            [name]: value
+             [name]: value
         });
+    }
+
+    validation() {
+        let errors = this.state.errors;
+
+        //validating the keyboard input
+
+        if(errors.className1 === '') {
+            errors.className1 = "Please enter a class name";
+        }
+
+        this.setState(errors);
     }
 
     onSubmit(event) {
@@ -55,6 +76,7 @@ export class AddCourses extends Component {
         this.setState({id: this.state.id + 1});
     }
     render() {
+        const {errors} = this.state.errors;
         return (
             <div>
                 
@@ -87,12 +109,15 @@ export class AddCourses extends Component {
                         <label>Add course name: </label>
                         <input type="text" name="className1" value={this.state.className1} onChange={this.handleChange}/>
                         <button type="submit">Add Course</button>
-                    </form>: null}
+                        <span className='errMsg'>{this.state.errors.className1}</span>
+                    </form>
+                    : null}
 
                 {(this.state.showForm && this.state.id === 1) ?
                     <form onSubmit={this.onSubmit}>
                         <label>Add course name: </label>
                         <input type="text" name="className2" value={this.state.className2} onChange={this.handleChange}/>
+                        <span className='errMsg'>{errors.className2}</span>
                         <button type="submit">Add Course</button>
                     </form>: null}
 
@@ -100,6 +125,7 @@ export class AddCourses extends Component {
                     <form onSubmit={this.onSubmit}>
                         <label>Add course name: </label>
                         <input type="text" name="className3" value={this.state.className3} onChange={this.handleChange}/>
+                        {errors.className3 > 0 && <span className='errMsg'>{errors.className3}</span>}
                         <button type="submit">Add Course</button>
                     </form>: null}
 
@@ -107,6 +133,7 @@ export class AddCourses extends Component {
                     <form onSubmit={this.onSubmit}>
                         <label>Add course name: </label>
                         <input type="text" name="className4" value={this.state.className4} onChange={this.handleChange}/>
+                        {errors.className4 > 0 && <span className='errMsg'>{errors.className4}</span>}
                         <button type="submit">Add Course</button>
                     </form>: null}
 
@@ -114,6 +141,7 @@ export class AddCourses extends Component {
                     <form onSubmit={this.onSubmit}>
                         <label>Add course name: </label>
                         <input type="text" name="className5" value={this.state.className5} onChange={this.handleChange}/>
+                        {errors.className5 > 0 && <span className='errMsg'>{errors.className5}</span>}
                         <button type="submit">Add Course</button>
                     </form>: null}
 
@@ -121,6 +149,7 @@ export class AddCourses extends Component {
                     <form onSubmit={this.onSubmit}>
                         <label>Add course name: </label>
                         <input type="text" name="className6" value={this.state.className6} onChange={this.handleChange}/>
+                        {errors.className6 > 0 && <span className='errMsg'>{errors.className6}</span>}
                         <button type="submit">Add Course</button>
                     </form>: null}
 
